@@ -1,0 +1,1367 @@
+[
+  {
+    "country_name": "Afghanistan",
+    "country_short_name": "Afghanistan",
+    "capital": "Kabul",
+    "continent": "Asia",
+    "iso_code": "AFG"
+  },
+  {
+    "country_name": "Albania",
+    "country_short_name": "Albania",
+    "capital": "Tirana",
+    "continent": "Europe",
+    "iso_code": "ALB"
+  },
+  {
+    "country_name": "Algeria",
+    "country_short_name": "Algeria",
+    "capital": "Algiers",
+    "continent": "Africa",
+    "iso_code": "DZA"
+  },
+  {
+    "country_name": "Andorra",
+    "country_short_name": "Andorra",
+    "capital": "Andorra la Vella",
+    "continent": "Europe",
+    "iso_code": "AND"
+  },
+  {
+    "country_name": "Angola",
+    "country_short_name": "Angola",
+    "capital": "Luanda",
+    "continent": "Africa",
+    "iso_code": "AGO"
+  },
+  {
+    "country_name": "Antigua and Barbuda",
+    "country_short_name": "Antigua and Barbuda",
+    "capital": "St. John's",
+    "continent": "North America",
+    "iso_code": "ATG"
+  },
+  {
+    "country_name": "Argentina",
+    "country_short_name": "Argentina",
+    "capital": "Buenos Aires",
+    "continent": "South America",
+    "iso_code": "ARG"
+  },
+  {
+    "country_name": "Armenia",
+    "country_short_name": "Armenia",
+    "capital": "Yerevan",
+    "continent": "Asia",
+    "iso_code": "ARM"
+  },
+  {
+    "country_name": "Australia",
+    "country_short_name": "Australia",
+    "capital": "Canberra",
+    "continent": "Oceania",
+    "iso_code": "AUS"
+  },
+  {
+    "country_name": "Austria",
+    "country_short_name": "Austria",
+    "capital": "Vienna",
+    "continent": "Europe",
+    "iso_code": "AUT"
+  },
+  {
+    "country_name": "Azerbaijan",
+    "country_short_name": "Azerbaijan",
+    "capital": "Baku",
+    "continent": "Asia",
+    "iso_code": "AZE"
+  },
+  {
+    "country_name": "The Bahamas",
+    "country_short_name": "Bahamas",
+    "capital": "Nassau",
+    "continent": "North America",
+    "iso_code": "BHS"
+  },
+  {
+    "country_name": "Bahrain",
+    "country_short_name": "Bahrain",
+    "capital": "Manama",
+    "continent": "Asia",
+    "iso_code": "BHR"
+  },
+  {
+    "country_name": "Bangladesh",
+    "country_short_name": "Bangladesh",
+    "capital": "Dhaka",
+    "continent": "Asia",
+    "iso_code": "BGD"
+  },
+  {
+    "country_name": "Barbados",
+    "country_short_name": "Barbados",
+    "capital": "Bridgetown",
+    "continent": "North America",
+    "iso_code": "BRB"
+  },
+  {
+    "country_name": "Belarus",
+    "country_short_name": "Belarus",
+    "capital": "Minsk",
+    "continent": "Europe",
+    "iso_code": "BLR"
+  },
+  {
+    "country_name": "Belgium",
+    "country_short_name": "Belgium",
+    "capital": "Brussels",
+    "continent": "Europe",
+    "iso_code": "BEL"
+  },
+  {
+    "country_name": "Belize",
+    "country_short_name": "Belize",
+    "capital": "Belmopan",
+    "continent": "North America",
+    "iso_code": "BLZ"
+  },
+  {
+    "country_name": "Benin",
+    "country_short_name": "Benin",
+    "capital": "Porto-Novo",
+    "continent": "Africa",
+    "iso_code": "BEN"
+  },
+  {
+    "country_name": "Bhutan",
+    "country_short_name": "Bhutan",
+    "capital": "Thimphu",
+    "continent": "Asia",
+    "iso_code": "BTN"
+  },
+  {
+    "country_name": "Bolivia, Plurinational State of",
+    "country_short_name": "Bolivia",
+    "capital": "La Paz (administrative); Sucre (judicial)",
+    "continent": "South America",
+    "iso_code": "BOL"
+  },
+  {
+    "country_name": "Bosnia and Herzegovina",
+    "country_short_name": "Bosnia and Herzegovina",
+    "capital": "Sarajevo",
+    "continent": "Europe",
+    "iso_code": "BIH"
+  },
+  {
+    "country_name": "Botswana",
+    "country_short_name": "Botswana",
+    "capital": "Gaborone",
+    "continent": "Africa",
+    "iso_code": "BWA"
+  },
+  {
+    "country_name": "Brazil",
+    "country_short_name": "Brazil",
+    "capital": "Brasilia",
+    "continent": "South America",
+    "iso_code": "BRA"
+  },
+  {
+    "country_name": "Brunei Darussalam",
+    "country_short_name": "Brunei",
+    "capital": "Bandar Seri Begawan",
+    "continent": "Asia",
+    "iso_code": "BRN"
+  },
+  {
+    "country_name": "Bulgaria",
+    "country_short_name": "Bulgaria",
+    "capital": "Sofia",
+    "continent": "Europe",
+    "iso_code": "BGR"
+  },
+  {
+    "country_name": "Burkina Faso",
+    "country_short_name": "Burkina Faso",
+    "capital": "Ouagadougou",
+    "continent": "Africa",
+    "iso_code": "BFA"
+  },
+  {
+    "country_name": "Burundi",
+    "country_short_name": "Burundi",
+    "capital": "Gitega",
+    "continent": "Africa",
+    "iso_code": "BDI"
+  },
+  {
+    "country_name": "Cambodia",
+    "country_short_name": "Cambodia",
+    "capital": "Phnom Penh",
+    "continent": "Asia",
+    "iso_code": "KHM"
+  },
+  {
+    "country_name": "Cameroon",
+    "country_short_name": "Cameroon",
+    "capital": "Yaounde",
+    "continent": "Africa",
+    "iso_code": "CMR"
+  },
+  {
+    "country_name": "Canada",
+    "country_short_name": "Canada",
+    "capital": "Ottawa",
+    "continent": "North America",
+    "iso_code": "CAN"
+  },
+  {
+    "country_name": "Cape Verde",
+    "country_short_name": "Cape Verde",
+    "capital": "Praia",
+    "continent": "Africa",
+    "iso_code": "CPV"
+  },
+  {
+    "country_name": "Central African Republic",
+    "country_short_name": "Central African Republic",
+    "capital": "Bangui",
+    "continent": "Africa",
+    "iso_code": "CAF"
+  },
+  {
+    "country_name": "Chad",
+    "country_short_name": "Chad",
+    "capital": "N'Djamena",
+    "continent": "Africa",
+    "iso_code": "TCD"
+  },
+  {
+    "country_name": "Chile",
+    "country_short_name": "Chile",
+    "capital": "Santiago",
+    "continent": "South America",
+    "iso_code": "CHL"
+  },
+  {
+    "country_name": "China",
+    "country_short_name": "China",
+    "capital": "Beijing",
+    "continent": "Asia",
+    "iso_code": "CHN"
+  },
+  {
+    "country_name": "Colombia",
+    "country_short_name": "Colombia",
+    "capital": "Bogota",
+    "continent": "South America",
+    "iso_code": "COL"
+  },
+  {
+    "country_name": "Comoros",
+    "country_short_name": "Comoros",
+    "capital": "Moroni",
+    "continent": "Africa",
+    "iso_code": "COM"
+  },
+  {
+    "country_name": "Costa Rica",
+    "country_short_name": "Costa Rica",
+    "capital": "San Jose",
+    "continent": "North America",
+    "iso_code": "CRI"
+  },
+  {
+    "country_name": "Cote d'Ivoire",
+    "country_short_name": "Cote d'Ivoire",
+    "capital": "Yamoussoukro (political); Abidjan (economic)",
+    "continent": "Africa",
+    "iso_code": "CIV"
+  },
+  {
+    "country_name": "Croatia",
+    "country_short_name": "Croatia",
+    "capital": "Zagreb",
+    "continent": "Europe",
+    "iso_code": "HRV"
+  },
+  {
+    "country_name": "Cuba",
+    "country_short_name": "Cuba",
+    "capital": "Havana",
+    "continent": "North America",
+    "iso_code": "CUB"
+  },
+  {
+    "country_name": "Cyprus",
+    "country_short_name": "Cyprus",
+    "capital": "Nicosia",
+    "continent": "Europe",
+    "iso_code": "CYP"
+  },
+  {
+    "country_name": "Czech Republic",
+    "country_short_name": "Czech Republic",
+    "capital": "Prague",
+    "continent": "Europe",
+    "iso_code": "CZE"
+  },
+  {
+    "country_name": "Denmark",
+    "country_short_name": "Denmark",
+    "capital": "Copenhagen",
+    "continent": "Europe",
+    "iso_code": "DNK"
+  },
+  {
+    "country_name": "Djibouti",
+    "country_short_name": "Djibouti",
+    "capital": "Djibouti",
+    "continent": "Africa",
+    "iso_code": "DJI"
+  },
+  {
+    "country_name": "Dominica",
+    "country_short_name": "Dominica",
+    "capital": "Roseau",
+    "continent": "North America",
+    "iso_code": "DMA"
+  },
+  {
+    "country_name": "Dominican Republic",
+    "country_short_name": "Dominican Republic",
+    "capital": "Santo Domingo",
+    "continent": "North America",
+    "iso_code": "DOM"
+  },
+  {
+    "country_name": "Ecuador",
+    "country_short_name": "Ecuador",
+    "capital": "Quito",
+    "continent": "South America",
+    "iso_code": "ECU"
+  },
+  {
+    "country_name": "Egypt",
+    "country_short_name": "Egypt",
+    "capital": "Cairo",
+    "continent": "Africa",
+    "iso_code": "EGY"
+  },
+  {
+    "country_name": "El Salvador",
+    "country_short_name": "El Salvador",
+    "capital": "San Salvador",
+    "continent": "North America",
+    "iso_code": "SLV"
+  },
+  {
+    "country_name": "Equatorial Guinea",
+    "country_short_name": "Equatorial Guinea",
+    "capital": "Malabo",
+    "continent": "Africa",
+    "iso_code": "GNQ"
+  },
+  {
+    "country_name": "Eritrea",
+    "country_short_name": "Eritrea",
+    "capital": "Asmara",
+    "continent": "Africa",
+    "iso_code": "ERI"
+  },
+  {
+    "country_name": "Estonia",
+    "country_short_name": "Estonia",
+    "capital": "Tallinn",
+    "continent": "Europe",
+    "iso_code": "EST"
+  },
+  {
+    "country_name": "Ethiopia",
+    "country_short_name": "Ethiopia",
+    "capital": "Addis Ababa",
+    "continent": "Africa",
+    "iso_code": "ETH"
+  },
+  {
+    "country_name": "Fiji",
+    "country_short_name": "Fiji",
+    "capital": "Suva",
+    "continent": "Oceania",
+    "iso_code": "FJI"
+  },
+  {
+    "country_name": "Finland",
+    "country_short_name": "Finland",
+    "capital": "Helsinki",
+    "continent": "Europe",
+    "iso_code": "FIN"
+  },
+  {
+    "country_name": "France",
+    "country_short_name": "France",
+    "capital": "Paris",
+    "continent": "Europe",
+    "iso_code": "FRA"
+  },
+  {
+    "country_name": "Gabon",
+    "country_short_name": "Gabon",
+    "capital": "Libreville",
+    "continent": "Africa",
+    "iso_code": "GAB"
+  },
+  {
+    "country_name": "Gambia",
+    "country_short_name": "Gambia",
+    "capital": "Banjul",
+    "continent": "Africa",
+    "iso_code": "GMB"
+  },
+  {
+    "country_name": "Georgia",
+    "country_short_name": "Georgia",
+    "capital": "Tbilisi",
+    "continent": "Asia",
+    "iso_code": "GEO"
+  },
+  {
+    "country_name": "Germany",
+    "country_short_name": "Germany",
+    "capital": "Berlin",
+    "continent": "Europe",
+    "iso_code": "DEU"
+  },
+  {
+    "country_name": "Ghana",
+    "country_short_name": "Ghana",
+    "capital": "Accra",
+    "continent": "Africa",
+    "iso_code": "GHA"
+  },
+  {
+    "country_name": "Greece",
+    "country_short_name": "Greece",
+    "capital": "Athens",
+    "continent": "Europe",
+    "iso_code": "GRC"
+  },
+  {
+    "country_name": "Grenada",
+    "country_short_name": "Grenada",
+    "capital": "St. George's",
+    "continent": "North America",
+    "iso_code": "GRD"
+  },
+  {
+    "country_name": "Guatemala",
+    "country_short_name": "Guatemala",
+    "capital": "Guatemala City",
+    "continent": "North America",
+    "iso_code": "GTM"
+  },
+  {
+    "country_name": "Guinea",
+    "country_short_name": "Guinea",
+    "capital": "Conakry",
+    "continent": "Africa",
+    "iso_code": "GIN"
+  },
+  {
+    "country_name": "Guinea-Bissau",
+    "country_short_name": "Guinea-Bissau",
+    "capital": "Bissau",
+    "continent": "Africa",
+    "iso_code": "GNB"
+  },
+  {
+    "country_name": "Guyana",
+    "country_short_name": "Guyana",
+    "capital": "Georgetown",
+    "continent": "South America",
+    "iso_code": "GUY"
+  },
+  {
+    "country_name": "Haiti",
+    "country_short_name": "Haiti",
+    "capital": "Port-au-Prince",
+    "continent": "North America",
+    "iso_code": "HTI"
+  },
+  {
+    "country_name": "Honduras",
+    "country_short_name": "Honduras",
+    "capital": "Tegucigalpa",
+    "continent": "North America",
+    "iso_code": "HND"
+  },
+  {
+    "country_name": "Hungary",
+    "country_short_name": "Hungary",
+    "capital": "Budapest",
+    "continent": "Europe",
+    "iso_code": "HUN"
+  },
+  {
+    "country_name": "Iceland",
+    "country_short_name": "Iceland",
+    "capital": "Reykjavik",
+    "continent": "Europe",
+    "iso_code": "ISL"
+  },
+  {
+    "country_name": "India",
+    "country_short_name": "India",
+    "capital": "New Delhi",
+    "continent": "Asia",
+    "iso_code": "IND"
+  },
+  {
+    "country_name": "Indonesia",
+    "country_short_name": "Indonesia",
+    "capital": "Jakarta",
+    "continent": "Asia",
+    "iso_code": "IDN"
+  },
+  {
+    "country_name": "Iran, Islamic Republic of",
+    "country_short_name": "Iran",
+    "capital": "Tehran",
+    "continent": "Asia",
+    "iso_code": "IRN"
+  },
+  {
+    "country_name": "Iraq",
+    "country_short_name": "Iraq",
+    "capital": "Baghdad",
+    "continent": "Asia",
+    "iso_code": "IRQ"
+  },
+  {
+    "country_name": "Ireland",
+    "country_short_name": "Ireland",
+    "capital": "Dublin",
+    "continent": "Europe",
+    "iso_code": "IRL"
+  },
+  {
+    "country_name": "Israel",
+    "country_short_name": "Israel",
+    "capital": "Jerusalem",
+    "continent": "Asia",
+    "iso_code": "ISR"
+  },
+  {
+    "country_name": "Italy",
+    "country_short_name": "Italy",
+    "capital": "Rome",
+    "continent": "Europe",
+    "iso_code": "ITA"
+  },
+  {
+    "country_name": "Jamaica",
+    "country_short_name": "Jamaica",
+    "capital": "Kingston",
+    "continent": "North America",
+    "iso_code": "JAM"
+  },
+  {
+    "country_name": "Japan",
+    "country_short_name": "Japan",
+    "capital": "Tokyo",
+    "continent": "Asia",
+    "iso_code": "JPN"
+  },
+  {
+    "country_name": "Jordan",
+    "country_short_name": "Jordan",
+    "capital": "Amman",
+    "continent": "Asia",
+    "iso_code": "JOR"
+  },
+  {
+    "country_name": "Kazakhstan",
+    "country_short_name": "Kazakhstan",
+    "capital": "Nur-Sultan",
+    "continent": "Asia",
+    "iso_code": "KAZ"
+  },
+  {
+    "country_name": "Kenya",
+    "country_short_name": "Kenya",
+    "capital": "Nairobi",
+    "continent": "Africa",
+    "iso_code": "KEN"
+  },
+  {
+    "country_name": "Kiribati",
+    "country_short_name": "Kiribati",
+    "capital": "Tarawa",
+    "continent": "Oceania",
+    "iso_code": "KIR"
+  },
+  {
+    "country_name": "Korea, Democratic People's Republic of",
+    "country_short_name": "North Korea",
+    "capital": "Pyongyang",
+    "continent": "Asia",
+    "iso_code": "PRK"
+  },
+  {
+    "country_name": "Korea, Republic of",
+    "country_short_name": "South Korea",
+    "capital": "Seoul",
+    "continent": "Asia",
+    "iso_code": "KOR"
+  },
+  {
+    "country_name": "Kosovo",
+    "country_short_name": "Kosovo",
+    "capital": "Pristina",
+    "continent": "Europe",
+    "iso_code": "XKX"
+  },
+  {
+    "country_name": "Kuwait",
+    "country_short_name": "Kuwait",
+    "capital": "Kuwait City",
+    "continent": "Asia",
+    "iso_code": "KWT"
+  },
+  {
+    "country_name": "Kyrgyzstan",
+    "country_short_name": "Kyrgyzstan",
+    "capital": "Bishkek",
+    "continent": "Asia",
+    "iso_code": "KGZ"
+  },
+  {
+    "country_name": "Lao People's Democratic Republic",
+    "country_short_name": "Laos",
+    "capital": "Vientiane",
+    "continent": "Asia",
+    "iso_code": "LAO"
+  },
+  {
+    "country_name": "Latvia",
+    "country_short_name": "Latvia",
+    "capital": "Riga",
+    "continent": "Europe",
+    "iso_code": "LVA"
+  },
+  {
+    "country_name": "Lebanon",
+    "country_short_name": "Lebanon",
+    "capital": "Beirut",
+    "continent": "Asia",
+    "iso_code": "LBN"
+  },
+  {
+    "country_name": "Lesotho",
+    "country_short_name": "Lesotho",
+    "capital": "Maseru",
+    "continent": "Africa",
+    "iso_code": "LSO"
+  },
+  {
+    "country_name": "Liberia",
+    "country_short_name": "Liberia",
+    "capital": "Monrovia",
+    "continent": "Africa",
+    "iso_code": "LBR"
+  },
+  {
+    "country_name": "Libya",
+    "country_short_name": "Libya",
+    "capital": "Tripoli",
+    "continent": "Africa",
+    "iso_code": "LBY"
+  },
+  {
+    "country_name": "Liechtenstein",
+    "country_short_name": "Liechtenstein",
+    "capital": "Vaduz",
+    "continent": "Europe",
+    "iso_code": "LIE"
+  },
+  {
+    "country_name": "Lithuania",
+    "country_short_name": "Lithuania",
+    "capital": "Vilnius",
+    "continent": "Europe",
+    "iso_code": "LTU"
+  },
+  {
+    "country_name": "Luxembourg",
+    "country_short_name": "Luxembourg",
+    "capital": "Luxembourg",
+    "continent": "Europe",
+    "iso_code": "LUX"
+  },
+  {
+    "country_name": "Macedonia, the former Yugoslav Republic of",
+    "country_short_name": "North Macedonia",
+    "capital": "Skopje",
+    "continent": "Europe",
+    "iso_code": "MKD"
+  },
+  {
+    "country_name": "Madagascar",
+    "country_short_name": "Madagascar",
+    "capital": "Antananarivo",
+    "continent": "Africa",
+    "iso_code": "MDG"
+  },
+  {
+    "country_name": "Malawi",
+    "country_short_name": "Malawi",
+    "capital": "Lilongwe",
+    "continent": "Africa",
+    "iso_code": "MWI"
+  },
+  {
+    "country_name": "Malaysia",
+    "country_short_name": "Malaysia",
+    "capital": "Kuala Lumpur",
+    "continent": "Asia",
+    "iso_code": "MYS"
+  },
+  {
+    "country_name": "Maldives",
+    "country_short_name": "Maldives",
+    "capital": "Male",
+    "continent": "Asia",
+    "iso_code": "MDV"
+  },
+  {
+    "country_name": "Mali",
+    "country_short_name": "Mali",
+    "capital": "Bamako",
+    "continent": "Africa",
+    "iso_code": "MLI"
+  },
+  {
+    "country_name": "Malta",
+    "country_short_name": "Malta",
+    "capital": "Valletta",
+    "continent": "Europe",
+    "iso_code": "MLT"
+  },
+  {
+    "country_name": "Marshall Islands",
+    "country_short_name": "Marshall Islands",
+    "capital": "Majuro",
+    "continent": "Oceania",
+    "iso_code": "MHL"
+  },
+  {
+    "country_name": "Mauritania",
+    "country_short_name": "Mauritania",
+    "capital": "Nouakchott",
+    "continent": "Africa",
+    "iso_code": "MRT"
+  },
+  {
+    "country_name": "Mauritius",
+    "country_short_name": "Mauritius",
+    "capital": "Port Louis",
+    "continent": "Africa",
+    "iso_code": "MUS"
+  },
+  {
+    "country_name": "Mexico",
+    "country_short_name": "Mexico",
+    "capital": "Mexico City",
+    "continent": "North America",
+    "iso_code": "MEX"
+  },
+  {
+    "country_name": "Micronesia, Federated States of",
+    "country_short_name": "Micronesia",
+    "capital": "Palikir",
+    "continent": "Oceania",
+    "iso_code": "FSM"
+  },
+  {
+    "country_name": "Moldova, Republic of",
+    "country_short_name": "Moldova",
+    "capital": "Chisinau",
+    "continent": "Europe",
+    "iso_code": "MDA"
+  },
+  {
+    "country_name": "Monaco",
+    "country_short_name": "Monaco",
+    "capital": "Monaco",
+    "continent": "Europe",
+    "iso_code": "MCO"
+  },
+  {
+    "country_name": "Mongolia",
+    "country_short_name": "Mongolia",
+    "capital": "Ulaanbaatar",
+    "continent": "Asia",
+    "iso_code": "MNG"
+  },
+  {
+    "country_name": "Montenegro",
+    "country_short_name": "Montenegro",
+    "capital": "Podgorica",
+    "continent": "Europe",
+    "iso_code": "MNE"
+  },
+  {
+    "country_name": "Morocco",
+    "country_short_name": "Morocco",
+    "capital": "Rabat",
+    "continent": "Africa",
+    "iso_code": "MAR"
+  },
+  {
+    "country_name": "Mozambique",
+    "country_short_name": "Mozambique",
+    "capital": "Maputo",
+    "continent": "Africa",
+    "iso_code": "MOZ"
+  },
+  {
+    "country_name": "Myanmar",
+    "country_short_name": "Myanmar",
+    "capital": "Naypyidaw",
+    "continent": "Asia",
+    "iso_code": "MMR"
+  },
+  {
+    "country_name": "Namibia",
+    "country_short_name": "Namibia",
+    "capital": "Windhoek",
+    "continent": "Africa",
+    "iso_code": "NAM"
+  },
+  {
+    "country_name": "Nauru",
+    "country_short_name": "Nauru",
+    "capital": "Yaren",
+    "continent": "Oceania",
+    "iso_code": "NRU"
+  },
+  {
+    "country_name": "Nepal",
+    "country_short_name": "Nepal",
+    "capital": "Kathmandu",
+    "continent": "Asia",
+    "iso_code": "NPL"
+  },
+  {
+    "country_name": "Netherlands",
+    "country_short_name": "Netherlands",
+    "capital": "Amsterdam",
+    "continent": "Europe",
+    "iso_code": "NLD"
+  },
+  {
+    "country_name": "New Zealand",
+    "country_short_name": "New Zealand",
+    "capital": "Wellington",
+    "continent": "Oceania",
+    "iso_code": "NZL"
+  },
+  {
+    "country_name": "Nicaragua",
+    "country_short_name": "Nicaragua",
+    "capital": "Managua",
+    "continent": "North America",
+    "iso_code": "NIC"
+  },
+  {
+    "country_name": "Niger",
+    "country_short_name": "Niger",
+    "capital": "Niamey",
+    "continent": "Africa",
+    "iso_code": "NER"
+  },
+  {
+    "country_name": "Nigeria",
+    "country_short_name": "Nigeria",
+    "capital": "Abuja",
+    "continent": "Africa",
+    "iso_code": "NGA"
+  },
+  {
+    "country_name": "Norway",
+    "country_short_name": "Norway",
+    "capital": "Oslo",
+    "continent": "Europe",
+    "iso_code": "NOR"
+  },
+  {
+    "country_name": "Oman",
+    "country_short_name": "Oman",
+    "capital": "Muscat",
+    "continent": "Asia",
+    "iso_code": "OMN"
+  },
+  {
+    "country_name": "Pakistan",
+    "country_short_name": "Pakistan",
+    "capital": "Islamabad",
+    "continent": "Asia",
+    "iso_code": "PAK"
+  },
+  {
+    "country_name": "Palau",
+    "country_short_name": "Palau",
+    "capital": "Ngerulmud",
+    "continent": "Oceania",
+    "iso_code": "PLW"
+  },
+  {
+    "country_name": "Palestine, State of",
+    "country_short_name": "Palestine",
+    "capital": "Ramallah",
+    "continent": "Asia",
+    "iso_code": "PSE"
+  },
+  {
+    "country_name": "Panama",
+    "country_short_name": "Panama",
+    "capital": "Panama City",
+    "continent": "North America",
+    "iso_code": "PAN"
+  },
+  {
+    "country_name": "Papua New Guinea",
+    "country_short_name": "Papua New Guinea",
+    "capital": "Port Moresby",
+    "continent": "Oceania",
+    "iso_code": "PNG"
+  },
+  {
+    "country_name": "Paraguay",
+    "country_short_name": "Paraguay",
+    "capital": "Asuncion",
+    "continent": "South America",
+    "iso_code": "PRY"
+  },
+  {
+    "country_name": "Peru",
+    "country_short_name": "Peru",
+    "capital": "Lima",
+    "continent": "South America",
+    "iso_code": "PER"
+  },
+  {
+    "country_name": "Philippines",
+    "country_short_name": "Philippines",
+    "capital": "Manila",
+    "continent": "Asia",
+    "iso_code": "PHL"
+  },
+  {
+    "country_name": "Poland",
+    "country_short_name": "Poland",
+    "capital": "Warsaw",
+    "continent": "Europe",
+    "iso_code": "POL"
+  },
+  {
+    "country_name": "Portugal",
+    "country_short_name": "Portugal",
+    "capital": "Lisbon",
+    "continent": "Europe",
+    "iso_code": "PRT"
+  },
+  {
+    "country_name": "Qatar",
+    "country_short_name": "Qatar",
+    "capital": "Doha",
+    "continent": "Asia",
+    "iso_code": "QAT"
+  },
+  {
+    "country_name": "Romania",
+    "country_short_name": "Romania",
+    "capital": "Bucharest",
+    "continent": "Europe",
+    "iso_code": "ROU"
+  },
+  {
+    "country_name": "Russian Federation",
+    "country_short_name": "Russia",
+    "capital": "Moscow",
+    "continent": "Europe",
+    "iso_code": "RUS"
+  },
+  {
+    "country_name": "Rwanda",
+    "country_short_name": "Rwanda",
+    "capital": "Kigali",
+    "continent": "Africa",
+    "iso_code": "RWA"
+  },
+  {
+    "country_name": "Saint Kitts and Nevis",
+    "country_short_name": "Saint Kitts and Nevis",
+    "capital": "Basseterre",
+    "continent": "North America",
+    "iso_code": "KNA"
+  },
+  {
+    "country_name": "Saint Lucia",
+    "country_short_name": "Saint Lucia",
+    "capital": "Castries",
+    "continent": "North America",
+    "iso_code": "LCA"
+  },
+  {
+    "country_name": "Saint Vincent and the Grenadines",
+    "country_short_name": "Saint Vincent and the Grenadines",
+    "capital": "Kingstown",
+    "continent": "North America",
+    "iso_code": "VCT"
+  },
+  {
+    "country_name": "Samoa",
+    "country_short_name": "Samoa",
+    "capital": "Apia",
+    "continent": "Oceania",
+    "iso_code": "WSM"
+  },
+  {
+    "country_name": "San Marino",
+    "country_short_name": "San Marino",
+    "capital": "City of San Marino",
+    "continent": "Europe",
+    "iso_code": "SMR"
+  },
+  {
+    "country_name": "Sao Tome and Principe",
+    "country_short_name": "Sao Tome and Principe",
+    "capital": "Sao Tome",
+    "continent": "Africa",
+    "iso_code": "STP"
+  },
+  {
+    "country_name": "Saudi Arabia",
+    "country_short_name": "Saudi Arabia",
+    "capital": "Riyadh",
+    "continent": "Asia",
+    "iso_code": "SAU"
+  },
+  {
+    "country_name": "Senegal",
+    "country_short_name": "Senegal",
+    "capital": "Dakar",
+    "continent": "Africa",
+    "iso_code": "SEN"
+  },
+  {
+    "country_name": "Serbia",
+    "country_short_name": "Serbia",
+    "capital": "Belgrade",
+    "continent": "Europe",
+    "iso_code": "SRB"
+  },
+  {
+    "country_name": "Seychelles",
+    "country_short_name": "Seychelles",
+    "capital": "Victoria",
+    "continent": "Africa",
+    "iso_code": "SYC"
+  },
+  {
+    "country_name": "Sierra Leone",
+    "country_short_name": "Sierra Leone",
+    "capital": "Freetown",
+    "continent": "Africa",
+    "iso_code": "SLE"
+  },
+  {
+    "country_name": "Singapore",
+    "country_short_name": "Singapore",
+    "capital": "Singapore",
+    "continent": "Asia",
+    "iso_code": "SGP"
+  },
+  {
+    "country_name": "Slovakia",
+    "country_short_name": "Slovakia",
+    "capital": "Bratislava",
+    "continent": "Europe",
+    "iso_code": "SVK"
+  },
+  {
+    "country_name": "Slovenia",
+    "country_short_name": "Slovenia",
+    "capital": "Ljubljana",
+    "continent": "Europe",
+    "iso_code": "SVN"
+  },
+  {
+    "country_name": "Solomon Islands",
+    "country_short_name": "Solomon Islands",
+    "capital": "Honiara",
+    "continent": "Oceania",
+    "iso_code": "SLB"
+  },
+  {
+    "country_name": "Somalia",
+    "country_short_name": "Somalia",
+    "capital": "Mogadishu",
+    "continent": "Africa",
+    "iso_code": "SOM"
+  },
+  {
+    "country_name": "South Africa",
+    "country_short_name": "South Africa",
+    "capital": "Pretoria (administrative); Cape Town (legislative); Bloemfontein (judicial)",
+    "continent": "Africa",
+    "iso_code": "ZAF"
+  },
+  {
+    "country_name": "South Sudan",
+    "country_short_name": "South Sudan",
+    "capital": "Juba",
+    "continent": "Africa",
+    "iso_code": "SSD"
+  },
+  {
+    "country_name": "Spain",
+    "country_short_name": "Spain",
+    "capital": "Madrid",
+    "continent": "Europe",
+    "iso_code": "ESP"
+  },
+  {
+    "country_name": "Sri Lanka",
+    "country_short_name": "Sri Lanka",
+    "capital": "Colombo",
+    "continent": "Asia",
+    "iso_code": "LKA"
+  },
+  {
+    "country_name": "Sudan",
+    "country_short_name": "Sudan",
+    "capital": "Khartoum",
+    "continent": "Africa",
+    "iso_code": "SDN"
+  },
+  {
+    "country_name": "Suriname",
+    "country_short_name": "Suriname",
+    "capital": "Paramaribo",
+    "continent": "South America",
+    "iso_code": "SUR"
+  },
+  {
+    "country_name": "Swaziland (Eswatini)",
+    "country_short_name": "Eswatini",
+    "capital": "Mbabane",
+    "continent": "Africa",
+    "iso_code": "SWZ"
+  },
+  {
+    "country_name": "Sweden",
+    "country_short_name": "Sweden",
+    "capital": "Stockholm",
+    "continent": "Europe",
+    "iso_code": "SWE"
+  },
+  {
+    "country_name": "Switzerland",
+    "country_short_name": "Switzerland",
+    "capital": "Bern",
+    "continent": "Europe",
+    "iso_code": "CHE"
+  },
+  {
+    "country_name": "Syrian Arab Republic",
+    "country_short_name": "Syria",
+    "capital": "Damascus",
+    "continent": "Asia",
+    "iso_code": "SYR"
+  },
+  {
+    "country_name": "Taiwan, Province of China",
+    "country_short_name": "Taiwan",
+    "capital": "Taipei",
+    "continent": "Asia",
+    "iso_code": "TWN"
+  },
+  {
+    "country_name": "Tajikistan",
+    "country_short_name": "Tajikistan",
+    "capital": "Dushanbe",
+    "continent": "Asia",
+    "iso_code": "TJK"
+  },
+  {
+    "country_name": "Tanzania, United Republic of",
+    "country_short_name": "Tanzania",
+    "capital": "Dodoma",
+    "continent": "Africa",
+    "iso_code": "TZA"
+  },
+  {
+    "country_name": "Thailand",
+    "country_short_name": "Thailand",
+    "capital": "Bangkok",
+    "continent": "Asia",
+    "iso_code": "THA"
+  },
+  {
+    "country_name": "Timor-Leste",
+    "country_short_name": "Timor-Leste",
+    "capital": "Dili",
+    "continent": "Asia",
+    "iso_code": "TLS"
+  },
+  {
+    "country_name": "Togo",
+    "country_short_name": "Togo",
+    "capital": "Lome",
+    "continent": "Africa",
+    "iso_code": "TGO"
+  },
+  {
+    "country_name": "Tonga",
+    "country_short_name": "Tonga",
+    "capital": "Nuku'alofa",
+    "continent": "Oceania",
+    "iso_code": "TON"
+  },
+  {
+    "country_name": "Trinidad and Tobago",
+    "country_short_name": "Trinidad and Tobago",
+    "capital": "Port of Spain",
+    "continent": "North America",
+    "iso_code": "TTO"
+  },
+  {
+    "country_name": "Tunisia",
+    "country_short_name": "Tunisia",
+    "capital": "Tunis",
+    "continent": "Africa",
+    "iso_code": "TUN"
+  },
+  {
+    "country_name": "Turkey",
+    "country_short_name": "Turkey",
+    "capital": "Ankara",
+    "continent": "Asia",
+    "iso_code": "TUR"
+  },
+  {
+    "country_name": "Turkmenistan",
+    "country_short_name": "Turkmenistan",
+    "capital": "Ashgabat",
+    "continent": "Asia",
+    "iso_code": "TKM"
+  },
+  {
+    "country_name": "Tuvalu",
+    "country_short_name": "Tuvalu",
+    "capital": "Funafuti",
+    "continent": "Oceania",
+    "iso_code": "TUV"
+  },
+  {
+    "country_name": "Uganda",
+    "country_short_name": "Uganda",
+    "capital": "Kampala",
+    "continent": "Africa",
+    "iso_code": "UGA"
+  },
+  {
+    "country_name": "Ukraine",
+    "country_short_name": "Ukraine",
+    "capital": "Kyiv",
+    "continent": "Europe",
+    "iso_code": "UKR"
+  },
+  {
+    "country_name": "United Arab Emirates",
+    "country_short_name": "United Arab Emirates",
+    "capital": "Abu Dhabi",
+    "continent": "Asia",
+    "iso_code": "ARE"
+  },
+  {
+    "country_name": "United Kingdom of Great Britain and Northern Ireland",
+    "country_short_name": "United Kingdom",
+    "capital": "London",
+    "continent": "Europe",
+    "iso_code": "GBR"
+  },
+  {
+    "country_name": "United States of America",
+    "country_short_name": "United States",
+    "capital": "Washington, D.C.",
+    "continent": "North America",
+    "iso_code": "USA"
+  },
+  {
+    "country_name": "Uruguay",
+    "country_short_name": "Uruguay",
+    "capital": "Montevideo",
+    "continent": "South America",
+    "iso_code": "URY"
+  },
+  {
+    "country_name": "Uzbekistan",
+    "country_short_name": "Uzbekistan",
+    "capital": "Tashkent",
+    "continent": "Asia",
+    "iso_code": "UZB"
+  },
+  {
+    "country_name": "Vanuatu",
+    "country_short_name": "Vanuatu",
+    "capital": "Port Vila",
+    "continent": "Oceania",
+    "iso_code": "VUT"
+  },
+  {
+    "country_name": "Vatican City State (Holy See)",
+    "country_short_name": "Vatican City",
+    "capital": "Vatican City",
+    "continent": "Europe",
+    "iso_code": "VAT"
+  },
+  {
+    "country_name": "Venezuela, Bolivarian Republic of",
+    "country_short_name": "Venezuela",
+    "capital": "Caracas",
+    "continent": "South America",
+    "iso_code": "VEN"
+  },
+  {
+    "country_name": "Vietnam",
+    "country_short_name": "Vietnam",
+    "capital": "Hanoi",
+    "continent": "Asia",
+    "iso_code": "VNM"
+  },
+  {
+    "country_name": "Yemen",
+    "country_short_name": "Yemen",
+    "capital": "Sana'a",
+    "continent": "Asia",
+    "iso_code": "YEM"
+  },
+  {
+    "country_name": "Zambia",
+    "country_short_name": "Zambia",
+    "capital": "Lusaka",
+    "continent": "Africa",
+    "iso_code": "ZMB"
+  },
+  {
+    "country_name": "Zimbabwe",
+    "country_short_name": "Zimbabwe",
+    "capital": "Harare",
+    "continent": "Africa",
+    "iso_code": "ZWE"
+  }
+]
