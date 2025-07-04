@@ -6,7 +6,7 @@ export default function HomeScreen ()
   const navigation = useNavigation();
   const router = useRouter()
   return (
-    <HomePage></HomePage>
+      <HomePage></HomePage>
   );
 }
 

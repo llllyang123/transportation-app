@@ -1,18 +1,23 @@
+import { useAuth } from '@/context/AuthContext';
 import i18n from '@/i18n';
 import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation, useRouter } from 'expo-router';
 import { t } from 'i18next';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-
 export default function ProfileHome() {
   const router = useRouter();
   const navigation = useNavigation();
-
+  const {logout} = useAuth()
    // 跳转到设置页逻辑
    const handleGoToSettings = () => {
     router.push("/profile/settings"); // 根据实际路由调整
-  };
+   };
+  
+  const loginOut = () =>
+  {
+    logout()
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -64,6 +69,18 @@ export default function ProfileHome() {
           {/* <FontAwesome name="list-alt" size={24} color="#333" /> */}
           <Text style={styles.functionText}>{ i18n.t("settings")}</Text>
           <FontAwesome name="angle-right" size={24} color="#888" />
+        </TouchableOpacity>
+
+        {/* 可继续扩展其他功能（收货地址、支付设置等） */}
+      </View>
+      <View style={styles.functionContainer}>
+        <TouchableOpacity
+          style={styles.functionItem}
+          onPress={loginOut} 
+        >
+          {/* <FontAwesome name="list-alt" size={24} color="#333" /> */}
+          <Text style={styles.functionText}>{ i18n.t("loginOut")}</Text>
+          {/* <FontAwesome name="angle-right" size={24} color="#888" /> */}
         </TouchableOpacity>
 
         {/* 可继续扩展其他功能（收货地址、支付设置等） */}

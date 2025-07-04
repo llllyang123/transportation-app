@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons'; // 需安装依赖：expo install @expo/vector-icons
+import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import { t } from 'i18next';
 import { StyleSheet } from 'react-native';
@@ -19,19 +19,18 @@ function ExploreIcon({ color, size }: TabIconProps) {
 }
 
 export default function TabsLayout() {
+
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: '#2196F3', // 激活态颜色
-        tabBarInactiveTintColor: '#999',  // 未激活态颜色
-        tabBarStyle: {
-          backgroundColor: '#fff',
-          borderTopColor: '#eee',
-        },
-        tabBarLabelStyle: {
-          fontSize: 12,
-          marginTop: 2,
-        },
+        tabBarActiveTintColor: '#2196F3',
+          tabBarInactiveTintColor: '#999',
+          tabBarStyle: { backgroundColor: '#fff', borderTopColor: '#eee' },
+          tabBarLabelStyle: { fontSize: 12, marginTop: 2 },
+          headerBackTitleVisible: false,
+          headerTintColor: '#000',
+          headerStyle: { backgroundColor: '#fff' },
+          headerTitleAlign: 'center',
       }}
     >
       {/* 首页 Tab */}
@@ -44,21 +43,21 @@ export default function TabsLayout() {
         }} 
       />
 
-      {/* 探索 Tab（示例） */}
+      {/* 我的页面 */}
       <Tabs.Screen 
         name="explore" 
         options={{ 
           tabBarLabel: 'MY', 
-          tabBarIcon: ({ color, size }) => <ExploreIcon color={color} size={size} 
-          />, 
-          headerTitle: t('profile')
+          tabBarIcon: ({ color, size }) => <ExploreIcon color={color} size={size} />, 
+          headerTitle: t( 'profile' ),
         }} 
       />
+      
     </Tabs>
   );
 }
 
-// 如果需要自定义 Tab 页面样式，可添加以下全局样式（可选）
+// 全局样式（可选）
 const globalStyles = StyleSheet.create({
   tabBar: {
     backgroundColor: '#fff',

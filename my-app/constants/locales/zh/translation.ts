@@ -119,7 +119,8 @@ const zhTranslation: TranslationResource = {
   common: {
     confirm: '确认',
     search: '搜索',
-    selectCountry: '选择国家'
+    selectCountry: '选择国家',
+    error: '错误'
   },
   publish: {
     title: '发布信息',
@@ -135,7 +136,45 @@ const zhTranslation: TranslationResource = {
       8: '文件资料'
     },
     price: '价格'
-  }
+  },
+  login: {
+    title: '登录',
+    formIncomplete: '表格不完整',
+    failed: '失败的',
+    usernamePlaceholder: '请输入您的用户名信息',
+    passwordPlaceholder: '请输入您的密码',
+    button: '登录',
+    forgotPassword: '忘记密码',
+    or: '或者',
+    register: '注册'
+  },
+  register: {
+    title: '注册账户',
+    subtitle: '加入我们，使用所有功能',
+    username: '用户名',
+    email: '邮箱',
+    password: '密码',
+    confirmedPassword: '确认密码',
+    button: '注册',
+    alreadyHaveAccount: '已有账户？',
+    login: '登录',
+    success: '注册成功',
+    successMessage: '您现在可以使用您的凭证登录',
+    error: '注册错误',
+    errorMessage: '创建账户失败，请重试。'
+  },
+  passwordStrength: {
+    weak: '弱',
+    medium: '中',
+    strong: '强'
+  },
+  validation: {
+    required: '此字段为必填项',
+    invalidEmail: '请输入有效的电子邮件地址',
+    passwordLength: '密码必须至少包含 6 个字符',
+    passwordMismatch: '密码不匹配'
+  },
+  loginOut: '退出登录'
 }
 
 export default zhTranslation

@@ -1,16 +1,20 @@
 import UserPage from '@/app/profile';
-import { useRouter } from 'expo-router';
+import { useAuth } from '@/context/AuthContext';
+import { useNavigation, useRouter } from 'expo-router';
 import { StyleSheet } from 'react-native';
-
-// 模拟订单数据
-type Order = { id: string; status: string; shop: string; total: string; products: number };
-const mockOrders: Order[] = [
-  { id: '1', status: '待付款', shop: '示例店铺1', total: '99.00', products: 1 },
-  { id: '2', status: '待发货', shop: '示例店铺2', total: '199.00', products: 2 },
-];
 
 export default function ProfileHome() {
   const router = useRouter();
+
+  const { isAuthenticated, loading } = useAuth();
+  console.log( 'isAuthenticated', isAuthenticated )
+  const navigation = useNavigation()
+  if ( !isAuthenticated )
+  {
+    // router.push( '/auth/LoginScreen' )
+    navigation.navigate('auth/LoginScreen')
+    return
+  }
 
   return (
     <UserPage></UserPage>

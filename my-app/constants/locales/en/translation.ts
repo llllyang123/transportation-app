@@ -119,7 +119,8 @@ const enTranslation: TranslationResource = {
   common: {
     confirm: 'Confirm',
     search: 'Search',
-    selectCountry: 'Select country'
+    selectCountry: 'Select country',
+    error: 'error'
   },
   publish: {
     title: 'Publish Information',
@@ -135,7 +136,45 @@ const enTranslation: TranslationResource = {
       '8': 'documents'
     },
     price: 'price'
-  }
+  },
+  login: {
+    title: 'login',
+    formIncomplete: 'Incomplete form',
+    failed: 'Failed',
+    usernamePlaceholder: 'Please enter your username information',
+    passwordPlaceholder: 'Please enter your password',
+    button: 'Login',
+    forgotPassword: 'forgot Password',
+    or: 'or',
+    register: 'register'
+  },
+  register: {
+    title: 'Create Account',
+    subtitle: 'Join us to access all features',
+    username: 'Username',
+    email: 'Email',
+    password: 'Password',
+    confirmPassword: 'Confirm Password',
+    button: 'Register',
+    alreadyHaveAccount: 'Already have an account?',
+    login: 'Login',
+    success: 'Registration Successful',
+    successMessage: 'You can now log in with your credentials',
+    error: 'Registration Error',
+    errorMessage: 'Failed to create account. Please try again.'
+  },
+  passwordStrength: {
+    weak: 'Weak',
+    medium: 'Medium',
+    strong: 'Strong'
+  },
+  validation: {
+    required: 'This field is required',
+    invalidEmail: 'Please enter a valid email address',
+    passwordLength: 'Password must be at least 6 characters',
+    passwordMismatch: 'Passwords do not match'
+  },
+  loginOut: 'Login Out'
 }
 
 export default enTranslation
