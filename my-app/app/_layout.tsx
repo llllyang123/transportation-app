@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // import { HapticTab } from '@/components/HapticTab';
+import LanguageSelector from '@/components/LanguageSelector';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import i18n from '@/i18n';
 import { Stack } from 'expo-router';
+import { I18nextProvider, useTranslation } from "react-i18next";
+import { Modal, StyleSheet, View } from 'react-native';
+
 export default function TabLayout ()
 {
   const colorScheme = useColorScheme();
+  const { t } = useTranslation();
+  const [showLanguageModal, setShowLanguageModal] = useState(false);
+  const handleLanguagePress = () => {
+    setShowLanguageModal(true);
+  };
 
   return (
+    <I18nextProvider i18n={i18n}>
     <Stack
       screenOptions={{
-        headerBackTitleVisible: false,
-        headerTitleAlign: 'center',
+          headerBackTitleVisible: false,
+          headerTintColor: '#000',
+          headerStyle: {
+            backgroundColor: '#fff',
+          },
+          headerTitleAlign: 'center',
       }}
     >
       {/* 底部 Tab 分组（可选） */}
@@ -23,45 +38,58 @@ export default function TabLayout ()
       {/* 「我的」主页面 */}
       <Stack.Screen 
         name="profile/index" 
-        options={{ headerTitle: '我的' }} 
+        options={{ headerTitle: t('profile') }}
       />
       {/* 个人信息页 */}
       <Stack.Screen 
         name="profile/info" 
-        options={{ headerTitle: '个人信息' }} 
+        options={{ headerTitle: t('profileInfo') }}
       />
       {/* 订单列表页 */}
       <Stack.Screen 
         name="profile/orders/list" 
-        options={{ headerTitle: '我的订单' }} 
+        options={{ headerTitle: t('myOrders.title') }} 
       />
       {/* 订单详情页 */}
       <Stack.Screen 
         name="profile/orders/detail/[orderId]" 
         options={({ route }) => ({ 
-          headerTitle: `订单${route.params.orderId}详情` 
+          headerTitle: `${t('order')}${route.params.orderId}${t('details')}` 
         })} 
       />
 
       <Stack.Screen 
         name="publish/index" 
-        options={{ headerTitle: 'publish' }} 
+        options={{ headerTitle: t('publish.title') }} 
       />
 
       {/* 「大厅」主页面 */}
       <Stack.Screen 
         name="hall/index" 
-        options={{ headerTitle: '大厅' }} 
+        options={{ headerTitle: t('hall') }} 
       />
       {/* 「大厅」infopage */}
       <Stack.Screen 
         name="hall/detail/[itemId]" 
-        options={{ headerTitle: '详情' }} 
-      />
-
+        options={{ headerTitle: t('details') }} 
+        />
+        
+      <Stack.Screen name="settings/index" />
       
-    </Stack>
-    
+      </Stack>
+      <Modal
+      visible={showLanguageModal}
+      transparent={true}
+      animationType="fade"
+      onRequestClose={() => setShowLanguageModal(false)}
+    >
+      <View style={styles.modalContainer}>
+        <View style={styles.modalContent}>
+          <LanguageSelector onClose={() => setShowLanguageModal(false)} />
+        </View>
+      </View>
+    </Modal>
+    </I18nextProvider>
     // <Tabs
     //   screenOptions={{
     //     tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
@@ -94,3 +122,23 @@ export default function TabLayout ()
     // </Tabs>
   );
 }
+const styles = StyleSheet.create({
+  headerRightContainer: {
+    flexDirection: 'row',
+    marginRight: 16,
+  },
+  languageButton: {
+    padding: 8,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 16,
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+  },
+});

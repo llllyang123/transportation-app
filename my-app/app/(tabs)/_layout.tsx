@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons'; // 需安装依赖：expo install @expo/vector-icons
 import { Tabs } from 'expo-router';
+import { t } from 'i18next';
 import { StyleSheet } from 'react-native';
 
 // Tab 图标类型
@@ -38,7 +39,8 @@ export default function TabsLayout() {
         name="index" 
         options={{ 
           tabBarLabel: 'Home', 
-          tabBarIcon: ({ color, size }) => <HomeIcon color={color} size={size} /> 
+          tabBarIcon: ( { color, size } ) => <HomeIcon color={ color } size={ size } />, 
+          headerTitle: t('home')
         }} 
       />
 
@@ -47,7 +49,9 @@ export default function TabsLayout() {
         name="explore" 
         options={{ 
           tabBarLabel: 'MY', 
-          tabBarIcon: ({ color, size }) => <ExploreIcon color={color} size={size} /> 
+          tabBarIcon: ({ color, size }) => <ExploreIcon color={color} size={size} 
+          />, 
+          headerTitle: t('profile')
         }} 
       />
     </Tabs>

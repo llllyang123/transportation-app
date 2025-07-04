@@ -1,4 +1,6 @@
+import { emitOrderRefresh } from '@/utils/eventBus';
 import { useLocalSearchParams, useNavigation, useRouter } from 'expo-router';
+import { t } from 'i18next';
 import { useState } from 'react';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
@@ -11,17 +13,19 @@ type CargoDetail = {
   remark: string;
   contact: string; // 模拟联系方式
   email: string;   // 模拟邮箱
+  price: string;
 };
 
 // 模拟货物详情数据
 const mockCargoDetail: CargoDetail = {
   id: '1',
-  origin: '中国上海',
-  destination: '美国纽约',
-  type: '电子产品',
-  remark: '这是一个很长的备注信息，用于测试省略号展示...',
+  origin: 'Shanghai, China',
+  destination: 'New York, USA',
+  type: 'Electronic products',
+  remark: 'This is a long remark, used to test the ellipsis display...',
   contact: '13800138000',
   email: 'cargo@example.com',
+  price: '$300'
 };
 
 export default function HallDetail ()
@@ -43,16 +47,23 @@ export default function HallDetail ()
     try {
       // 模拟API请求
       await acceptOrderApi(itemId); // 调用实际接单API
+      // 模拟接单API请求
+      // await fetch(`https://api.example.com/cargos/${route.params.cargoId}/accept`, {
+      //   method: 'POST',
+      // });
+
       
       // 显示成功提示
       Alert.alert(
-        '接单成功',
-        '您已成功接收此订单！',
+        `${t('hallDetail.success')}`,
+        `${t('hallDetail.successTips')}`,
         [
           {
-            text: '确定',
+            text:  `${t('hallDetail.enter')}`,
             onPress: () => {
-              setIsAccepted(true);
+              setIsAccepted( true );
+              // 触发刷新事件
+              emitOrderRefresh();
               // 返回上一页
               navigation.goBack();
             },
@@ -61,8 +72,8 @@ export default function HallDetail ()
         { cancelable: false }
       );
     } catch (error) {
-      console.error('接单失败', error);
-      Alert.alert('接单失败', error.message || '请重试');
+      console.error(`${t('hallDetail.error')}`, error);
+      Alert.alert(`${t('hallDetail.error')}`, error.message || `${t('hallDetail.tryAgain')}`);
     } finally {
       setLoading(false);
     }
@@ -70,7 +81,7 @@ export default function HallDetail ()
   };
 
   // 模拟接单API
-  const acceptOrderApi = async (itemId) => {
+  const acceptOrderApi = async (itemId: any) => {
     // 实际项目中这里应该调用后端API
     console.log(itemId)
     return new Promise((resolve) => setTimeout(resolve, 1000));
@@ -78,37 +89,43 @@ export default function HallDetail ()
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>货物详情</Text>
+      <Text style={ styles.title }>{ t( 'hallDetail.cargoDetails' ) }</Text>
 
       <View style={styles.infoSection}>
-        <Text style={styles.label}>始发地：</Text>
+        <Text style={styles.label}>{ t( 'hallDetail.origin' ) }</Text>
         <Text style={styles.value}>{cargo.origin}</Text>
       </View>
 
       <View style={styles.infoSection}>
-        <Text style={styles.label}>目的地：</Text>
+        <Text style={styles.label}>{ t( 'hallDetail.destination' ) }</Text>
         <Text style={styles.value}>{cargo.destination}</Text>
       </View>
 
       <View style={styles.infoSection}>
-        <Text style={styles.label}>货物类型：</Text>
+        <Text style={styles.label}>{ t( 'hallDetail.cargoType' ) }</Text>
         <Text style={styles.value}>{cargo.type}</Text>
       </View>
 
       <View style={styles.infoSection}>
-        <Text style={styles.label}>备注：</Text>
+        <Text style={styles.label}>{ t( 'hallDetail.remarks' ) }</Text>
         <Text style={[styles.value, styles.remark]}>
           {cargo.remark.length > 30 
             ? `${cargo.remark.slice(0, 30)}...` 
             : cargo.remark}
         </Text>
       </View>
+      
+      <View style={styles.infoSection}>
+        <Text style={styles.label}>{ t( 'publish.price' ) }</Text>
+        <Text style={styles.value}>{cargo.price}</Text>
+      </View>
+      
 
       <TouchableOpacity 
         style={styles.takeOrderButton} 
         onPress={handleTakeOrder}
       >
-        <Text style={styles.takeOrderText}>接单</Text>
+        <Text style={styles.takeOrderText}>{ t( 'hallDetail.orders' ) }</Text>
       </TouchableOpacity>
     </View>
   );

@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
+import { t } from 'i18next';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function HomeScreen ()
@@ -14,7 +15,7 @@ export default function HomeScreen ()
         <Image
           source={{ uri: 'https://picsum.photos/800/300' }}
           style={styles.bannerImage}
-          resizeMode="cover"
+          contentFit="cover"
           alt="首页横幅广告"
         />
       </View>
@@ -25,14 +26,14 @@ export default function HomeScreen ()
           style={styles.button}
           onPress={() => router.push('/publish')}
         >
-          <Text style={styles.buttonText}>发布</Text>
+          <Text style={styles.buttonText}>{t('publish.publishButton')}</Text>
         </TouchableOpacity>
         
         <TouchableOpacity
           style={styles.button}
           onPress={() => router.push('/hall')}
         >
-          <Text style={styles.buttonText}>大厅</Text>
+          <Text style={styles.buttonText}>{t('hall')}</Text>
         </TouchableOpacity>
         
       </View>

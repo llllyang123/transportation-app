@@ -1,17 +1,18 @@
-import OrderItem from '@/components/OrderItem'; // 订单列表项组件
+import i18n from '@/i18n';
 import { FontAwesome } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
+import { useNavigation, useRouter } from 'expo-router';
+import { t } from 'i18next';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-// 模拟订单数据
-type Order = { id: string; status: string; shop: string; total: string; products: number };
-const mockOrders: Order[] = [
-  { id: '1', status: '待付款', shop: '示例店铺1', total: '99.00', products: 1 },
-  { id: '2', status: '待发货', shop: '示例店铺2', total: '199.00', products: 2 },
-];
 
 export default function ProfileHome() {
   const router = useRouter();
+  const navigation = useNavigation();
+
+   // 跳转到设置页逻辑
+   const handleGoToSettings = () => {
+    router.push("/profile/settings"); // 根据实际路由调整
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -23,12 +24,12 @@ export default function ProfileHome() {
         <Image
           source={{ uri: 'https://picsum.photos/100/100' }}
           style={styles.avatar}
-          resizeMode="cover"
+          contentFit="cover"
           alt="用户头像"
         />
         <View style={styles.profileInfo}>
-          <Text style={styles.username}>用户名</Text>
-          <Text style={styles.editProfile}>点击编辑个人信息</Text>
+          <Text style={styles.username}>{t('userInfo')}</Text>
+          <Text style={styles.editProfile}>{t('userInfoTips')}</Text>
         </View>
         <FontAwesome name="angle-right" size={24} color="#888" />
       </TouchableOpacity>
@@ -39,8 +40,8 @@ export default function ProfileHome() {
           style={styles.functionItem}
           onPress={() => router.push('/profile/orders/list')} // 跳转订单列表
         >
-          <FontAwesome name="list-alt" size={24} color="#333" />
-          <Text style={styles.functionText}>我的订单</Text>
+          {/* <FontAwesome name="list-alt" size={24} color="#333" /> */}
+          <Text style={styles.functionText}>{i18n.t('myOrders.title')}</Text>
           <FontAwesome name="angle-right" size={24} color="#888" />
         </TouchableOpacity>
 
@@ -48,21 +49,24 @@ export default function ProfileHome() {
       </View>
 
       {/* 最近订单 */}
-      <View style={styles.recentOrdersHeader}>
-        <Text style={styles.recentOrdersTitle}>最近订单</Text>
+      {/* <View style={styles.recentOrdersHeader}>
+        <Text style={ styles.functionText }>{ t('recentOrders')}</Text>
         <TouchableOpacity onPress={() => router.push('/profile/orders/list')}>
-          <Text style={styles.viewAllText}>查看全部</Text>
+          <Text style={styles.viewAllText}>{t('viewAll')}</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
 
-      <View style={styles.ordersContainer}>
-        {mockOrders.map((order) => (
-          <OrderItem 
-            key={order.id} 
-            order={order} 
-            onPress={() => router.push(`/profile/orders/detail/${order.id}`)} 
-          />
-        ))}
+      <View style={styles.functionContainer}>
+        <TouchableOpacity
+          style={styles.functionItem}
+          onPress={handleGoToSettings} 
+        >
+          {/* <FontAwesome name="list-alt" size={24} color="#333" /> */}
+          <Text style={styles.functionText}>{ i18n.t("settings")}</Text>
+          <FontAwesome name="angle-right" size={24} color="#888" />
+        </TouchableOpacity>
+
+        {/* 可继续扩展其他功能（收货地址、支付设置等） */}
       </View>
     </ScrollView>
   );
@@ -100,4 +104,23 @@ const styles = StyleSheet.create({
   recentOrdersTitle: { fontSize: 18, fontWeight: 'bold' },
   viewAllText: { color: '#007AFF' },
   ordersContainer: { backgroundColor: 'white', marginBottom: 20 },
+  // container: {
+  //   flex: 1,
+  //   padding: 16,
+  //   backgroundColor: "#fff",
+  // },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 24,
+  },
+  settingsButton: {
+    backgroundColor: "#f5f5f5",
+    padding: 12,
+    borderRadius: 6,
+    marginVertical: 8,
+  },
+  settingsButtonText: {
+    fontSize: 16,
+  },
 });

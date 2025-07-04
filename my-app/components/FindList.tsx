@@ -1,30 +1,35 @@
 import { Feather, FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import { t } from 'i18next';
 import React, { useState } from 'react';
 import { FlatList, Modal, RefreshControl, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { Button, Card, Slider, Switch } from 'react-native-paper';
+import { Button, Card, Switch } from 'react-native-paper';
+import CountryPicker from './CountryPicker';
 // 货物数据类型
 export type Cargo = {
-  id: string;
+  id: number;
   origin: string;
   destination: string;
   type: string;
+  typeid: number,
   remark: string;
   date: string;
   price: string;
-  status: '待取' | '运输中' | '已完成';
+  status: 1 | 2 | 3; //'待取' | '运输中' | '已完成';
   isUrgent: boolean;
   hasInsurance: boolean;
 };
 
 // 筛选条件类型
 type FilterParams = {
-  category: string;
+  category: number;
+  categoryName: string,
   sort: 'default' | 'price-asc' | 'price-desc' | 'time-new' | 'time-old';
-  priceRange: string;
-  origin: string;
+  // priceRange: string;
+  // origin: string;
+  selectedCountry: string,
   destination: string;
-  status: string;
+  status: number;
   isUrgent: boolean;
   hasInsurance: boolean;
 };
@@ -33,23 +38,25 @@ type FilterParams = {
 const TaobaoStyleFilter: React.FC<{ 
   onFilter: (filters: FilterParams) => void;
   initialFilters?: Partial<FilterParams>;
-  categories?: { id: string; name: string }[];
+  categories?: { id: number; name: string }[];
 }> = ({ onFilter, initialFilters, categories = [] }) => {
   const [activeTab, setActiveTab] = useState<'category' | 'sort' | 'price' | 'more'>('category');
   const [showModal, setShowModal] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState('全部类型');
-  const [selectedPriceRange, setSelectedPriceRange] = useState('全部价格');
+  const [ selectedCategory, setSelectedCategory ] = useState( 1 );
+  const [ selectedCategoryName, setSelectedCategoryName ] = useState(`${t("hallInfo.allType")}`);
+  // const [selectedPriceRange, setSelectedPriceRange] = useState('全部价格');
   const [sortOption, setSortOption] = useState<'default' | 'price-asc' | 'price-desc'>('default');
   const [priceSlider, setPriceSlider] = useState([0, 1000]);
-  const [origin, setOrigin] = useState('');
+  // const [ origin, setOrigin ] = useState( '' );
+  const [selectedCountry, setSelectedCountry] = useState('');
   const [destination, setDestination] = useState('');
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState(0);
   const [isUrgent, setIsUrgent] = useState(false);
   const [hasInsurance, setHasInsurance] = useState(false);
   
   // 分类数据
   const categoryData = [
-    { id: '1', name: '全部类型' },
+    { id: 1, name: `${t("hallInfo.allType")}` },
     ...categories,
   ];
 
@@ -65,10 +72,12 @@ const TaobaoStyleFilter: React.FC<{
   // 初始化筛选条件
   React.useEffect(() => {
     if (initialFilters) {
-      if (initialFilters.category) setSelectedCategory(initialFilters.category);
-      if (initialFilters.priceRange) setSelectedPriceRange(initialFilters.priceRange);
+      if ( initialFilters.category ) setSelectedCategory( initialFilters.category ); 
+      if (initialFilters.category) setSelectedCategoryName(initialFilters.categoryName as any);
+      // if (initialFilters.priceRange) setSelectedPriceRange(initialFilters.priceRange);
       if (initialFilters.sort) setSortOption(initialFilters.sort as any);
-      if (initialFilters.origin) setOrigin(initialFilters.origin);
+      // if ( initialFilters.origin ) setOrigin( initialFilters.origin );
+      if ( initialFilters.selectedCountry ) setSelectedCountry( initialFilters.selectedCountry );
       if (initialFilters.destination) setDestination(initialFilters.destination);
       if (initialFilters.status) setStatus(initialFilters.status);
       if (initialFilters.isUrgent !== undefined) setIsUrgent(initialFilters.isUrgent);
@@ -91,9 +100,11 @@ const TaobaoStyleFilter: React.FC<{
   const applyFilters = () => {
     const filters: FilterParams = {
       category: selectedCategory,
+      categoryName: selectedCategoryName,
       sort: sortOption,
-      priceRange: selectedPriceRange,
-      origin,
+      // priceRange: selectedPriceRange,
+      // origin,
+      selectedCountry,
       destination,
       status,
       isUrgent,
@@ -106,23 +117,27 @@ const TaobaoStyleFilter: React.FC<{
 
   // 重置筛选
   const resetFilters = () => {
-    setSelectedCategory('全部类型');
-    setSelectedPriceRange('全部价格');
+    setSelectedCategory( 1 );
+    setSelectedCategoryName(`${t("hallInfo.allType")}`);
+    // setSelectedPriceRange('全部价格');
     setSortOption('default');
-    setOrigin('');
+    // setOrigin( '' );
+    setSelectedCountry('')
     setDestination('');
-    setStatus('');
+    setStatus(0);
     setIsUrgent(false);
     setHasInsurance(false);
     setPriceSlider([0, 1000]);
     
     const filters: FilterParams = {
-      category: '全部类型',
+      category: 1,
+      categoryName: `${t("hallInfo.allType")}`,
       sort: 'default',
-      priceRange: '全部价格',
-      origin: '',
+      // priceRange: '全部价格',
+      // origin: '',
+      selectedCountry: '',
       destination: '',
-      status: '',
+      status: 0,
       isUrgent: false,
       hasInsurance: false,
     };
@@ -132,46 +147,47 @@ const TaobaoStyleFilter: React.FC<{
   };
 
   // 渲染分类选项
-  const renderCategoryItem = ({ item }: { item: { id: string; name: string } }) => (
+  const renderCategoryItem = ({ item }: { item: { id: number; name: string } }) => (
     <TouchableOpacity
       key={item.id}
       style={[
         styles.filterItem,
-        selectedCategory === item.name ? styles.filterItemSelected : null,
+        selectedCategory === item.id ? styles.filterItemSelected : null,
       ]}
       onPress={() => {
-        setSelectedCategory(item.name);
+        setSelectedCategory( item.id );
+        setSelectedCategoryName(item.name)
       }}
     >
-      <Text style={selectedCategory === item.name ? styles.filterItemTextSelected : styles.filterItemText}>
+      <Text style={selectedCategory === item.id ? styles.filterItemTextSelected : styles.filterItemText}>
         {item.name}
       </Text>
-      {selectedCategory === item.name && (
+      {selectedCategory === item.id && (
         <MaterialIcons name="check" size={16} color="#1677ff" />
       )}
     </TouchableOpacity>
   );
 
   // 渲染价格区间选项
-  const renderPriceItem = ({ item }: { item: { id: string; name: string } }) => (
-    <TouchableOpacity
-      key={item.id}
-      style={[
-        styles.filterItem,
-        selectedPriceRange === item.name ? styles.filterItemSelected : null,
-      ]}
-      onPress={() => {
-        setSelectedPriceRange(item.name);
-      }}
-    >
-      <Text style={selectedPriceRange === item.name ? styles.filterItemTextSelected : styles.filterItemText}>
-        {item.name}
-      </Text>
-      {selectedPriceRange === item.name && (
-        <MaterialIcons name="check" size={16} color="#1677ff" />
-      )}
-    </TouchableOpacity>
-  );
+  // const renderPriceItem = ({ item }: { item: { id: string; name: string } }) => (
+  //   <TouchableOpacity
+  //     key={item.id}
+  //     style={[
+  //       styles.filterItem,
+  //       selectedPriceRange === item.name ? styles.filterItemSelected : null,
+  //     ]}
+  //     onPress={() => {
+  //       setSelectedPriceRange(item.name);
+  //     }}
+  //   >
+  //     <Text style={selectedPriceRange === item.name ? styles.filterItemTextSelected : styles.filterItemText}>
+  //       {item.name}
+  //     </Text>
+  //     {selectedPriceRange === item.name && (
+  //       <MaterialIcons name="check" size={16} color="#1677ff" />
+  //     )}
+  //   </TouchableOpacity>
+  // );
 
   // 渲染排序选项
   const renderSortItem = (option: string, label: string, icon?: string) => (
@@ -195,22 +211,29 @@ const TaobaoStyleFilter: React.FC<{
     </TouchableOpacity>
   );
 
+  const handleCountrySelectEnd = (country: any) => {
+    console.log("Selected country end:", country.iso_code);
+    setSelectedCountry(country.iso_code);
+  };
+
+
+
   return (
     <>
       {/* 顶部筛选栏 */}
       <View style={styles.filterBar}>
         {/* 分类按钮 */}
         <TouchableOpacity 
-          style={[styles.filterButton, selectedCategory !== '全部类型' && styles.filterButtonActive]}
+          style={[styles.filterButton, selectedCategory !== 1 && styles.filterButtonActive]}
           onPress={() => openModal('category')}
         >
-          <Text style={selectedCategory !== '全部类型' ? styles.filterButtonTextActive : styles.filterButtonText}>
-            {selectedCategory}
+          <Text style={selectedCategory !== 1 ? styles.filterButtonTextActive : styles.filterButtonText}>
+            {selectedCategoryName}
           </Text>
           <FontAwesome 
             name="angle-down" 
             size={16} 
-            color={selectedCategory !== '全部类型' ? '#1677ff' : '#666'} 
+            color={selectedCategory !== 1 ? '#1677ff' : '#666'} 
           />
         </TouchableOpacity>
         
@@ -220,8 +243,8 @@ const TaobaoStyleFilter: React.FC<{
           onPress={() => openModal('sort')}
         >
           <Text style={sortOption !== 'default' ? styles.filterButtonTextActive : styles.filterButtonText}>
-            {sortOption === 'default' ? '默认排序' : 
-             sortOption === 'price-asc' ? '价格最低' : '价格最高'}
+            {sortOption === 'default' ? `${t("hallInfo.defaultSort")}` : 
+             sortOption === 'price-asc' ? `${t("hallInfo.lowestPrice")}` : `${t("hallInfo.highestPrice")}`}
           </Text>
           <FontAwesome 
             name="angle-down" 
@@ -231,7 +254,7 @@ const TaobaoStyleFilter: React.FC<{
         </TouchableOpacity>
         
         {/* 价格区间按钮 */}
-        <TouchableOpacity 
+        {/* <TouchableOpacity 
           style={[styles.filterButton, selectedPriceRange !== '全部价格' && styles.filterButtonActive]}
           onPress={() => openModal('price')}
         >
@@ -243,20 +266,20 @@ const TaobaoStyleFilter: React.FC<{
             size={16} 
             color={selectedPriceRange !== '全部价格' ? '#1677ff' : '#666'} 
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         
         {/* 更多筛选按钮 */}
         <TouchableOpacity 
-          style={[styles.filterButton, (origin || destination || status || isUrgent || hasInsurance) && styles.filterButtonActive]}
+          style={[styles.filterButton, (selectedCountry || destination || status || isUrgent || hasInsurance) && styles.filterButtonActive]}
           onPress={() => openModal('more')}
         >
-          <Text style={(origin || destination || status || isUrgent || hasInsurance) ? styles.filterButtonTextActive : styles.filterButtonText}>
-            更多
+          <Text style={(selectedCountry || destination || status || isUrgent || hasInsurance) ? styles.filterButtonTextActive : styles.filterButtonText}>
+            {t("hallInfo.more")}
           </Text>
           <Feather 
             name="sliders" 
             size={16} 
-            color={(origin || destination || status || isUrgent || hasInsurance) ? '#1677ff' : '#666'} 
+            color={(selectedCountry || destination || status || isUrgent || hasInsurance) ? '#1677ff' : '#666'} 
           />
         </TouchableOpacity>
       </View>
@@ -277,15 +300,15 @@ const TaobaoStyleFilter: React.FC<{
             {/* 模态框头部 */}
             <View style={styles.modalHeader}>
               <Text style={styles.modalTitle}>
-                {activeTab === 'category' ? '选择分类' : 
-                 activeTab === 'sort' ? '排序方式' : 
-                 activeTab === 'price' ? '价格区间' : '更多筛选'}
+                {activeTab === 'category' ? `${t("hallInfo.selectCategory")}` : 
+                 activeTab === 'sort' ? `${t("hallInfo.sortBy")}` : 
+                 activeTab === 'price' ? `${t("hallInfo.priceRange")}` : `${t("hallInfo.moreFilters")}`}
               </Text>
               <TouchableOpacity 
                 style={styles.resetButton}
                 onPress={resetFilters}
               >
-                <Text style={styles.resetButtonText}>重置</Text>
+                <Text style={styles.resetButtonText}>{t("hallInfo.reSet")}</Text>
               </TouchableOpacity>
             </View>
             
@@ -296,7 +319,7 @@ const TaobaoStyleFilter: React.FC<{
                   <FlatList
                     data={categoryData}
                     renderItem={renderCategoryItem}
-                    keyExtractor={(item) => item.id}
+                    keyExtractor={(item) => item.id.toString()}
                     numColumns={3}
                     contentContainerStyle={styles.categoryList}
                   />
@@ -305,51 +328,11 @@ const TaobaoStyleFilter: React.FC<{
               
               {activeTab === 'sort' && (
                 <View style={styles.modalSection}>
-                  {renderSortItem('default', '默认排序')}
-                  {renderSortItem('price-asc', '价格从低到高', 'arrow-down')}
-                  {renderSortItem('price-desc', '价格从高到低', 'arrow-up')}
-                  {renderSortItem('time-new', '最新发布', 'clock')}
-                  {renderSortItem('time-old', '最早发布', 'clock-o')}
-                </View>
-              )}
-              
-              {activeTab === 'price' && (
-                <View style={styles.modalSection}>
-                  <Text style={styles.priceRangeLabel}>
-                    价格区间: ¥{priceSlider[0]} - ¥{priceSlider[1]}
-                  </Text>
-                  <Slider
-                    style={styles.priceSlider}
-                    minimumValue={0}
-                    maximumValue={1000}
-                    step={10}
-                    value={priceSlider}
-                    onValueChange={setPriceSlider}
-                    minimumTrackTintColor="#1677ff"
-                    maximumTrackTintColor="#e0e0e0"
-                    thumbTintColor="#1677ff"
-                  />
-                  
-                  <View style={styles.priceRangeButtons}>
-                    <TouchableOpacity 
-                      style={styles.priceRangeButton}
-                      onPress={() => setPriceSlider([0, 100])}
-                    >
-                      <Text style={styles.priceRangeButtonText}>¥0-¥100</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity 
-                      style={styles.priceRangeButton}
-                      onPress={() => setPriceSlider([100, 500])}
-                    >
-                      <Text style={styles.priceRangeButtonText}>¥100-¥500</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity 
-                      style={styles.priceRangeButton}
-                      onPress={() => setPriceSlider([500, 1000])}
-                    >
-                      <Text style={styles.priceRangeButtonText}>¥500-¥1000</Text>
-                    </TouchableOpacity>
-                  </View>
+                  {renderSortItem('default', `${t("hallInfo.defaultSort")}`)}
+                  {renderSortItem('price-asc', `${t("hallInfo.priceFromLowToHigh")}`, 'arrow-down')}
+                  {renderSortItem('price-desc', `${t("hallInfo.priceFromHighToLow")}`, 'arrow-up')}
+                  {renderSortItem('time-new', `${t("hallInfo.latestRelease")}`, 'clock')}
+                  {renderSortItem('time-old', `${t("hallInfo.earliestRelease")}`, 'clock-o')}
                 </View>
               )}
               
@@ -357,20 +340,26 @@ const TaobaoStyleFilter: React.FC<{
                 <View style={styles.modalSection}>
                   {/* 始发地 */}
                   <View style={styles.filterGroup}>
-                    <Text style={styles.filterLabel}>始发地</Text>
+                    <Text style={ styles.filterLabel }>{ t("hallInfo.origin") }</Text>
                     <View style={styles.filterInputContainer}>
-                      <TextInput
+                      {/* <TextInput
                         style={styles.filterInput}
                         placeholder="请输入始发地"
                         value={origin}
                         onChangeText={setOrigin}
+                      /> */}
+                      <CountryPicker
+                        lab='destination'
+                        onCountrySelect={handleCountrySelectEnd}
+                        placeholder={t("common.selectCountry")}
+                        showSearch={true}
                       />
                     </View>
                   </View>
                   
                   {/* 目的地 */}
                   <View style={styles.filterGroup}>
-                    <Text style={styles.filterLabel}>目的地</Text>
+                    <Text style={styles.filterLabel}>{ t("hallInfo.destination") }</Text>
                     <View style={styles.filterInputContainer}>
                       <TextInput
                         style={styles.filterInput}
@@ -383,39 +372,39 @@ const TaobaoStyleFilter: React.FC<{
                   
                   {/* 状态 */}
                   <View style={styles.filterGroup}>
-                    <Text style={styles.filterLabel}>状态</Text>
+                    <Text style={styles.filterLabel}>{t('hallInfo.statusName')}</Text>
                     <View style={styles.filterOptions}>
                       <TouchableOpacity
                         style={[
                           styles.filterOption,
-                          status === '待取' && styles.filterOptionSelected,
+                          status === 1 && styles.filterOptionSelected,
                         ]}
-                        onPress={() => setStatus(status === '待取' ? '' : '待取')}
+                        onPress={() => setStatus(status === 1 ? 0 : 1)}
                       >
-                        <Text style={status === '待取' ? styles.filterOptionTextSelected : styles.filterOptionText}>
-                          待取
+                        <Text style={status === 1 ? styles.filterOptionTextSelected : styles.filterOptionText}>
+                        {t("hallInfo.waitingForPickup")}
                         </Text>
                       </TouchableOpacity>
                       <TouchableOpacity
                         style={[
                           styles.filterOption,
-                          status === '运输中' && styles.filterOptionSelected,
+                          status === 2 && styles.filterOptionSelected,
                         ]}
-                        onPress={() => setStatus(status === '运输中' ? '' : '运输中')}
+                        onPress={() => setStatus(status === 2 ? 0 : 2)}
                       >
-                        <Text style={status === '运输中' ? styles.filterOptionTextSelected : styles.filterOptionText}>
-                          运输中
+                        <Text style={status === 2 ? styles.filterOptionTextSelected : styles.filterOptionText}>
+                          {t("hallInfo.inTransit")}
                         </Text>
                       </TouchableOpacity>
                       <TouchableOpacity
                         style={[
                           styles.filterOption,
-                          status === '已完成' && styles.filterOptionSelected,
+                          status === 3 && styles.filterOptionSelected,
                         ]}
-                        onPress={() => setStatus(status === '已完成' ? '' : '已完成')}
+                        onPress={() => setStatus(status === 3 ? 0 : 3)}
                       >
-                        <Text style={status === '已完成' ? styles.filterOptionTextSelected : styles.filterOptionText}>
-                          已完成
+                        <Text style={status === 3 ? styles.filterOptionTextSelected : styles.filterOptionText}>
+                        {t("hallInfo.completed")}
                         </Text>
                       </TouchableOpacity>
                     </View>
@@ -450,7 +439,7 @@ const TaobaoStyleFilter: React.FC<{
                 style={styles.applyButton}
                 onPress={applyFilters}
               >
-                <Text style={styles.applyButtonText}>确定</Text>
+                <Text style={styles.applyButtonText}>{ t("hallInfo.enter") }</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -507,7 +496,7 @@ const CargoItem: React.FC<{
             <View style={styles.itemTags}>
               {cargo.isUrgent && (
                 <View style={styles.tagUrgent}>
-                  <Text style={styles.tagText}>紧急</Text>
+                  <Text style={styles.tagText}>{t('hallInfo.emergency')}</Text>
                 </View>
               )}
               {cargo.hasInsurance && (
@@ -518,12 +507,12 @@ const CargoItem: React.FC<{
               <View 
                 style={[
                   styles.tagStatus,
-                  cargo.status === '待取' ? styles.tagStatusPending :
-                  cargo.status === '运输中' ? styles.tagStatusInProgress :
+                  cargo.status === 1 ? styles.tagStatusPending :
+                  cargo.status === 2 ? styles.tagStatusInProgress :
                   styles.tagStatusCompleted
                 ]}
               >
-                <Text style={styles.tagText}>{cargo.status}</Text>
+                <Text style={styles.tagText}>{cargo.status === 1 ? t('hallInfo.waitingForPickup') : cargo.status === 2 ? t('hallInfo.inTransit') : cargo.status === 3 ? t('hallInfo.completed') : '' }</Text>
               </View>
             </View>
           </View>
@@ -549,7 +538,7 @@ const EmptyState: React.FC<{
           onPress={onReset}
           style={styles.resetButton}
         >
-          重置筛选
+          {t("hallInfo.resetFilter")}
         </Button>
       )}
     </View>
@@ -564,7 +553,7 @@ export type HallScreenProps = {
   onRefresh?: () => void;
   onLoadMore?: () => void;
   renderItemContent?: (cargo: Cargo) => React.ReactNode;
-  categories?: { id: string; name: string }[];
+  categories?: { id: number; name: string }[];
   emptyStateMessage?: string;
   emptyStateIcon?: React.ReactNode;
 };
@@ -577,11 +566,18 @@ export const HallScreen: React.FC<HallScreenProps> = ({
   onLoadMore,
   renderItemContent,
   categories = [
-    { id: '2', name: '电子产品' },
-    { id: '3', name: '生鲜' },
-    { id: '4', name: '普通货物' },
-    { id: '5', name: '易碎品' },
-    { id: '6', name: '贵重物品' },
+    // { id: '2', name: `${t("publish.typeList.[2]")}` },
+    // { id: '3', name: '生鲜' },
+    // { id: '4', name: '普通货物' },
+    // { id: '5', name: '易碎品' },
+    // { id: '6', name: '贵重物品' },
+    { id: 2, name: t('publish.typeList.2') },
+    { id: 3, name: t('publish.typeList.3') },
+    { id: 4, name: t('publish.typeList.4') },
+    { id: 5, name: t('publish.typeList.5') },
+    { id: 6, name: t('publish.typeList.6')},
+    { id: 7, name: t('publish.typeList.7') },
+    { id: 8, name: t('publish.typeList.8') },
   ],
   emptyStateMessage,
   emptyStateIcon,
@@ -589,12 +585,14 @@ export const HallScreen: React.FC<HallScreenProps> = ({
   const router = useRouter();
   const [filteredCargos, setFilteredCargos] = useState<Cargo[]>(cargos);
   const [filters, setFilters] = useState<FilterParams>({
-    category: '全部类型',
+    category: 1,
+    categoryName: `${t("hallInfo.allType")}`,
     sort: 'default',
-    priceRange: '全部价格',
-    origin: '',
+    // priceRange: '全部价格',
+    // origin: '',
+    selectedCountry: '',
     destination: '',
-    status: '',
+    status: 0,
     isUrgent: false,
     hasInsurance: false,
   });
@@ -611,13 +609,16 @@ export const HallScreen: React.FC<HallScreenProps> = ({
     let result = [...cargos];
     
     // 应用分类筛选
-    if (filters.category && filters.category !== '全部类型') {
-      result = result.filter(cargo => cargo.type === filters.category);
+    if ( filters.category && filters.category !== 1 )
+    {
+      console.log("filters", filters)
+      result = result.filter( cargo => cargo.typeid === filters.category );
+      console.log("result", result)
     }
     
     // 应用始发地筛选
-    if (filters.origin) {
-      result = result.filter(cargo => cargo.origin.includes(filters.origin));
+    if (filters.selectedCountry) {
+      result = result.filter(cargo => cargo.origin.includes(filters.selectedCountry));
     }
     
     // 应用目的地筛选
@@ -626,8 +627,9 @@ export const HallScreen: React.FC<HallScreenProps> = ({
     }
     
     // 应用状态筛选
-    if (filters.status) {
-      result = result.filter(cargo => cargo.status === filters.status);
+    if ( filters.status )
+    {
+      result = result.filter( cargo => cargo.status === filters.status );
     }
     
     // 应用紧急货物筛选
@@ -640,23 +642,6 @@ export const HallScreen: React.FC<HallScreenProps> = ({
       result = result.filter(cargo => cargo.hasInsurance);
     }
     
-    // 应用价格区间筛选
-    if (filters.priceRange && filters.priceRange !== '全部价格') {
-      const price = parseInt(filters.priceRange.replace(/[^0-9]/g, ''));
-      
-      if (filters.priceRange.includes('以上')) {
-        result = result.filter(cargo => {
-          const cargoPrice = parseInt(cargo.price.replace(/[^0-9]/g, ''));
-          return cargoPrice >= price;
-        });
-      } else if (filters.priceRange.includes('-')) {
-        const [min, max] = filters.priceRange.split('-').map(p => parseInt(p.replace(/[^0-9]/g, '')));
-        result = result.filter(cargo => {
-          const cargoPrice = parseInt(cargo.price.replace(/[^0-9]/g, ''));
-          return cargoPrice >= min && cargoPrice <= max;
-        });
-      }
-    }
     
     // 应用排序
     switch (filters.sort) {
@@ -682,7 +667,7 @@ export const HallScreen: React.FC<HallScreenProps> = ({
         break;
       default:
         // 默认排序（按ID倒序）
-        result.sort((a, b) => parseInt(b.id) - parseInt(a.id));
+        result.sort((a, b) => parseInt(b.id.toString()) - parseInt(a.id.toString()));
         break;
     }
     
@@ -706,16 +691,17 @@ export const HallScreen: React.FC<HallScreenProps> = ({
   // 重置筛选
   const resetFilters = () => {
     const defaultFilters: FilterParams = {
-      category: '全部类型',
+      category: 1,
+      categoryName: `${t("hallInfo.allType")}`,
       sort: 'default',
-      priceRange: '全部价格',
-      origin: '',
+      // priceRange: '全部价格',
+      // origin: '',
+      selectedCountry: '',
       destination: '',
-      status: '',
+      status: 0,
       isUrgent: false,
       hasInsurance: false,
     };
-    
     setFilters(defaultFilters);
     setFilteredCargos(cargos);
   };
@@ -740,7 +726,7 @@ export const HallScreen: React.FC<HallScreenProps> = ({
         />
       }
     >
-      <Text style={styles.title}>{title}</Text>
+      {/* <Text style={styles.title}>{title}</Text> */}
       
       {/* 筛选组件 */}
       <TaobaoStyleFilter 
@@ -855,6 +841,8 @@ const styles = StyleSheet.create({
   },
   resetButton: {
     padding: 8,
+    backgroundColor: '#1677ff',
+    marginTop: 8,
   },
   resetButtonText: {
     color: '#999',
@@ -1132,9 +1120,5 @@ const styles = StyleSheet.create({
     color: '#999',
     marginVertical: 16,
     textAlign: 'center',
-  },
-  resetButton: {
-    backgroundColor: '#1677ff',
-    marginTop: 8,
   },
 });

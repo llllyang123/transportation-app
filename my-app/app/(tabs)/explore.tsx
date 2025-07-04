@@ -23,7 +23,7 @@ export default function ProfileHome() {
     //     <Image
     //       source={{ uri: 'https://picsum.photos/100/100' }}
     //       style={styles.avatar}
-    //       resizeMode="cover"
+    //       contentFit="cover"
     //       alt="用户头像"
     //     />
     //     <View style={styles.profileInfo}>

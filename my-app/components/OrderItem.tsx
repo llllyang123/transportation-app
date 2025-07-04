@@ -1,41 +1,42 @@
+import { Order } from '@/models/orders';
 import { FontAwesome } from '@expo/vector-icons';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-
+import { t } from 'i18next';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 // 订单类型
-type Order = { 
-  id: string; 
-  status: string; 
-  shop: string; 
-  total: string; 
-  products: number 
-};
+// type Order = { 
+//   id: number; 
+//   status: number; 
+//   shop: string; 
+//   total: string; 
+//   products: number 
+// };
 
 type OrderItemProps = {
   order: Order;
-  onPress: () => void;
+  onPress: (order: Order) => void;
 };
 
 export default function OrderItem({ order, onPress }: OrderItemProps) {
   return (
-    <TouchableOpacity style={styles.orderItem} onPress={onPress}>
+    <TouchableOpacity style={styles.orderItem} onPress={()=>onPress(order)}>
       {/* 订单顶部信息（店铺、状态） */}
       <View style={styles.orderTop}>
         <Text style={styles.orderShop}>{order.shop}</Text>
         <Text style={[styles.orderStatus, getStatusColor(order.status)]}>
-          {order.status}
+          {t(`orderStatus.${order.status}`)}
         </Text>
       </View>
 
       {/* 订单商品简要信息（模拟显示一个商品图 + 描述） */}
       <View style={styles.orderProducts}>
-        <Image
+        {/* <Image
           source={{ uri: 'https://picsum.photos/80/80' }}
           style={styles.productImage}
-          resizeMode="cover"
+          contentFit="cover"
           alt="商品示例图"
-        />
+        /> */}
         <View style={styles.productInfo}>
-          <Text style={styles.productName}>共 {order.products} 件商品</Text>
+          {/* <Text style={styles.productName}>共 {order.products} 件商品</Text> */}
           <Text style={styles.productTotal}>合计: ¥{order.total}</Text>
         </View>
       </View>
@@ -47,13 +48,13 @@ export default function OrderItem({ order, onPress }: OrderItemProps) {
 }
 
 // 根据订单状态返回不同文本颜色
-const getStatusColor = (status: string) => {
+const getStatusColor = (status: number) => {
   switch(status) {
-    case '待付款':
+    case 1:
       return { color: '#FF9500' };
-    case '待发货':
+    case 2:
       return { color: '#FF9500' };
-    case '已完成':
+    case 3:
       return { color: '#4CD964' };
     default:
       return { color: '#333' };

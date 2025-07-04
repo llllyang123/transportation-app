@@ -1,81 +1,95 @@
 import { Cargo, HallScreen } from '@/components/FindList'; // 导入封装好的组件
+import { onOrderRefresh } from '@/utils/eventBus';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
-import React from 'react';
+import { t } from 'i18next';
+import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 // 模拟数据
 const mockCargos: Cargo[] = [
   {
-    id: '1',
-    origin: '上海',
-    destination: '北京',
-    type: '电子产品',
-    remark: '3C产品，易碎，请轻拿轻放',
+    id: 1,
+    origin: 'Shanghai',
+    destination: 'Beijing',
+    type: 'Electronic products',
+    typeid: 2,
+    remark: '3C products, fragile, please handle with care',
     date: '2023-05-15',
-    price: '¥500',
-    status: '待取',
+    price: '$500',
+    status: 1,
     isUrgent: true,
     hasInsurance: true,
-  },
-  {
-    id: '2',
-    origin: '广州',
-    destination: '深圳',
-    type: '生鲜',
-    remark: '冷链运输，需要冷藏设备',
+    },
+    {
+    id: 2,
+    origin: 'Guangzhou',
+    destination: 'Shenzhen',
+    type: 'Fresh',
+    typeid: 3,
+    remark: 'Cold chain transportation, refrigeration equipment is required',
     date: '2023-05-16',
-    price: '¥300',
-    status: '待取',
+    price: '$300',
+    status: 1,
     isUrgent: false,
     hasInsurance: false,
-  },
-  {
-    id: '3',
-    origin: '成都',
-    destination: '重庆',
-    type: '普通货物',
-    remark: '日常用品，无特殊要求',
+    },
+    {
+    id: 3,
+    origin: 'Chengdu',
+    destination: 'Chongqing',
+    type: 'General goods',
+    typeid: 4,
+    remark: 'Daily necessities, no special requirements',
     date: '2023-05-14',
-    price: '¥200',
-    status: '运输中',
+    price: '$200',
+    status: 2,
     isUrgent: false,
     hasInsurance: true,
-  },
-  {
-    id: '4',
-    origin: '杭州',
-    destination: '南京',
-    type: '易碎品',
-    remark: '玻璃制品，小心轻放',
+    },
+    {
+    id: 4,
+    origin: 'Hangzhou',
+    destination: 'Nanjing',
+    type: 'Fragile goods',
+    typeid: 5,
+    remark: 'Glass products, please handle with care',
     date: '2023-05-13',
-    price: '¥800',
-    status: '已完成',
+    price: '$800',
+    status: 3,
     isUrgent: true,
     hasInsurance: true,
-  },
-  {
-    id: '5',
-    origin: '武汉',
-    destination: '长沙',
-    type: '贵重物品',
-    remark: '高价值物品，需专人护送',
+    },
+    {
+    id: 5,
+    origin: 'Wuhan',
+    destination: 'Changsha',
+    type: 'Valuables',
+    typeid: 6,
+    remark: 'High value items require special escort',
     date: '2023-05-12',
-    price: '¥1200',
-    status: '待取',
+    price: '$1200',
+    status: 1,
     isUrgent: true,
     hasInsurance: true,
-  },
+    },
 ];
 
 // 自定义分类
 const customCategories = [
-  { id: '2', name: '电子产品' },
-  { id: '3', name: '生鲜' },
-  { id: '4', name: '普通货物' },
-  { id: '5', name: '易碎品' },
-  { id: '6', name: '贵重物品' },
-  { id: '7', name: '大件物品' },
-  { id: '8', name: '文件资料' },
+  // { id: '2', name: '电子产品' },
+  // { id: '3', name: '生鲜' },
+  // { id: '4', name: '普通货物' },
+  // { id: '5', name: '易碎品' },
+  // { id: '6', name: '贵重物品' },
+  // { id: '7', name: '大件物品' },
+  // { id: '8', name: '文件资料' },
+    { id: 2, name: t('publish.typeList.2') },
+    { id: 3, name: t('publish.typeList.3') },
+    { id: 4, name: t('publish.typeList.4') },
+    { id: 5, name: t('publish.typeList.5') },
+    { id: 6, name: t('publish.typeList.6') },
+    { id: 7, name: t('publish.typeList.7') },
+    { id: 8, name: t('publish.typeList.8') },
 ];
 
 // 自定义列表项内容
@@ -106,12 +120,12 @@ const customRenderItemContent = (cargo: Cargo) => (
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         {cargo.isUrgent && (
           <View style={{ backgroundColor: '#ff4d4f', paddingHorizontal: 6, paddingVertical: 2, borderRadius: 4, marginRight: 4 }}>
-            <Text style={{ fontSize: 12, color: '#fff' }}>紧急</Text>
+            <Text style={{ fontSize: 12, color: '#fff' }}>{t('hallInfo.emergency')}</Text>
           </View>
         )}
         {cargo.hasInsurance && (
           <View style={{ backgroundColor: '#722ed1', paddingHorizontal: 6, paddingVertical: 2, borderRadius: 4, marginRight: 4 }}>
-            <Text style={{ fontSize: 12, color: '#fff' }}>保险</Text>
+            <Text style={{ fontSize: 12, color: '#fff' }}>{t('hallInfo.Insurance')}</Text>
           </View>
         )}
         <View 
@@ -119,11 +133,11 @@ const customRenderItemContent = (cargo: Cargo) => (
             paddingHorizontal: 6, 
             paddingVertical: 2, 
             borderRadius: 4,
-            backgroundColor: cargo.status === '待取' ? '#1677ff' : 
-                             cargo.status === '运输中' ? '#faad14' : '#52c41a'
+            backgroundColor: cargo.status === 1 ? '#1677ff' : 
+                             cargo.status === 2 ? '#faad14' : '#52c41a'
           }}
         >
-          <Text style={{ fontSize: 12, color: '#fff' }}>{cargo.status}</Text>
+          <Text style={{ fontSize: 12, color: '#fff' }}>{cargo.status === 1 ? t('hallInfo.waitingForPickup') : cargo.status === 2 ? t('hallInfo.inTransit') : cargo.status === 3 ? t('hallInfo.completed') : '' }</Text>
         </View>
       </View>
     </View>
@@ -157,16 +171,46 @@ const MyHallScreen: React.FC = () =>
     
   };
 
+  const [loading, setLoading] = useState(false);
+  const [cargoList, setCargoList] = useState<Cargo[]>([]);
+
+ // 加载货物列表
+ const fetchCargos = async () => {
+  setLoading(true);
+  try {
+    // 模拟API请求
+    // const response = await fetch('https://api.example.com/cargos');
+    // const data = await response.json();
+    // setCargoList( data );
+    setCargoList( mockCargos );
+  } catch (error) {
+    console.error('Failed to fetch cargos:', error);
+  } finally {
+    setLoading(false);
+  }
+};
+
+// 组件挂载时加载数据
+useEffect(() => {
+  fetchCargos();
+
+  // 监听订单刷新事件
+  const unsubscribe = onOrderRefresh(() => {
+    fetchCargos();
+  });
+
+  return unsubscribe; // 组件卸载时取消订阅
+}, []);
+
   return (
     <HallScreen
-      title="我的货物大厅"
       cargos={mockCargos}
       onItemPress={handleItemPress}
       onRefresh={handleRefresh}
       onLoadMore={handleLoadMore}
       renderItemContent={customRenderItemContent}
       categories={customCategories}
-      emptyStateMessage="暂无符合条件的货物，请尝试调整筛选条件"
+      emptyStateMessage={t("hallInfo.noDataTips")}
       emptyStateIcon={customEmptyStateIcon}
     />
   );
