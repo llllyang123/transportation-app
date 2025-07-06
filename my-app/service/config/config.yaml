@@ -1,0 +1,18 @@
+server:
+  port: "8080"
+
+db:
+  driver: "mysql"
+  host: "localhost"
+  port: 3306
+  username: "root"
+  password: "yang1234"
+  name: "freight"
+  charset: "utf8mb4"
+  max_open_conns: 100
+  max_idle_conns: 20
+  conn_max_lifetime: 5
+
+jwt:
+  secret: "your-secret-key"  # 生产环境请使用安全的随机密钥
+  expiry: 86400              # token过期时间（秒）    
