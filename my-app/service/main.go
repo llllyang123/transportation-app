@@ -33,15 +33,20 @@ func main() {
 	// 创建服务
 	dbInstance := db.GetDB()
 
+	// 创建仓储实例
+	freightRepo := db.NewFreightRepository(dbInstance)
+
 	// 注意：这里直接传递数据库连接给服务层
 	userService := services.NewUserServiceImpl(dbInstance, cfg.JWT.Secret)
 	configService := services.NewConfigServiceImpl(dbInstance)
+	//freightService := services.NewFreightService(dbInstance)
+	freightService := services.NewFreightService(freightRepo)
 
 	// 创建中间件
 	authMiddleware := middleware.NewAuthMiddleware(cfg.JWT.Secret)
 
 	// 设置路由（传递三个参数）
-	router := routes.SetupRoutes(userService, configService, authMiddleware)
+	router := routes.SetupRoutes(userService, configService, freightService, authMiddleware)
 
 	// 启动服务器
 	log.Printf("服务器启动在端口 %s", cfg.Server.Port)

@@ -75,8 +75,8 @@ func (s *userServiceImpl) Register(username, password, email string) (*models.Us
 		Password:  hashedPassword,
 		Email:     email,
 		Status:    1,
-		CreatedAt: time.Now(),
-		UpdatedAt: time.Now(),
+		CreatedAt: utils.FromTime(time.Now()),
+		UpdatedAt: utils.FromTime(time.Now()),
 	}, nil
 }
 

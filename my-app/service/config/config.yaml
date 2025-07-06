@@ -12,6 +12,7 @@ db:
   max_open_conns: 100
   max_idle_conns: 20
   conn_max_lifetime: 5
+  loc: "Asia/Shanghai"
 
 jwt:
   secret: "your-secret-key"  # 生产环境请使用安全的随机密钥

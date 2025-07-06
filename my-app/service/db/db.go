@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"freight/config"
 	"log"
+	"net/url"
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -14,8 +15,8 @@ var dbInstance *sql.DB
 
 // Init 初始化数据库连接
 func Init(cfg config.DBConfig) error {
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=%s&parseTime=true",
-		cfg.Username, cfg.Password, cfg.Host, cfg.Port, cfg.Name, cfg.Charset)
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=%s&parseTime=true&loc=%s",
+		cfg.Username, cfg.Password, cfg.Host, cfg.Port, cfg.Name, cfg.Charset, url.QueryEscape(cfg.Loc))
 
 	var err error
 	dbInstance, err = sql.Open(cfg.Driver, dsn)

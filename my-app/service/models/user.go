@@ -1,20 +1,20 @@
 package models
 
 import (
-	"time"
+	"freight/utils"
 )
 
 // User 用户模型
 type User struct {
-	ID        int64     `json:"id"`
-	Username  string    `json:"username"`
-	Password  string    `json:"-"` // 不返回密码
-	Email     string    `json:"email"`
-	AvatarURL string    `json:"avatar_url"`
-	Role      string    `json:"role"`
-	Status    int       `json:"status"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
+	ID        int64                `json:"id"`
+	Username  string               `json:"username"`
+	Password  string               `json:"-"` // 不返回密码
+	Email     string               `json:"email"`
+	AvatarURL string               `json:"avatar_url"`
+	Role      string               `json:"role"`
+	Status    int                  `json:"status"`
+	CreatedAt utils.CustomNullTime `json:"created_at"`
+	UpdatedAt utils.CustomNullTime `json:"updated_at"`
 }
 
 // UserRepository 用户数据访问接口

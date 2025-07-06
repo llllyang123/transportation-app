@@ -4,6 +4,8 @@ import (
 	"database/sql"
 	"errors"
 	"freight/models"
+	"freight/utils"
+	"time"
 )
 
 // UserRepositoryImpl 用户数据访问实现
@@ -18,10 +20,39 @@ func NewUserRepository(db *sql.DB) models.UserRepository {
 
 // Create 创建用户
 func (r *UserRepositoryImpl) Create(user *models.User) error {
-	query := `INSERT INTO users (username, password, email, avatar_url, role, status, created_at, updated_at)
-              VALUES (?, ?, ?, ?, ?, ?)`
+	// 设置自动生成的字段
+	now := time.Now()
+	user.CreatedAt = utils.FromTime(now)
+	user.UpdatedAt = utils.FromTime(now)
 
-	_, err := r.db.Exec(query, user.Username, user.Password, &user.AvatarURL, &user.Role, user.Email, user.Status, user.CreatedAt, user.UpdatedAt)
+	// 设置默认值
+	if user.AvatarURL == "" {
+		user.AvatarURL = "https://picsum.photos/100/100" // 设置默认头像
+	}
+	if user.Role == "" {
+		user.Role = "user" // 设置默认角色
+	}
+	if user.Status == 0 {
+		user.Status = 1 // 设置默认状态（1表示活跃）
+	}
+
+	query := `
+        INSERT INTO users (
+            username, password, email, avatar_url, role, status, created_at, updated_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `
+
+	_, err := r.db.Exec(query,
+		user.Username,
+		user.Password,
+		user.Email,     // 修正顺序
+		user.AvatarURL, // 直接使用值，而非指针
+		user.Role,      // 直接使用值，而非指针
+		user.Status,
+		user.CreatedAt, // 自动生成的时间
+		user.UpdatedAt, // 自动生成的时间
+	)
+
 	return err
 }
 
