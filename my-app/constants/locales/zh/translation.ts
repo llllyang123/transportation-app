@@ -135,7 +135,8 @@ const zhTranslation: TranslationResource = {
       7: '大件物品',
       8: '文件资料'
     },
-    price: '价格'
+    price: '价格',
+    selectOrderDate: '请选择日期'
   },
   login: {
     title: '登录',

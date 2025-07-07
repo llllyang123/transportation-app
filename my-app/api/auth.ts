@@ -21,7 +21,7 @@ export const loginApi = async (params: LoginParams): Promise<LoginResponse> => {
     email: params.username.includes('@') ? params.username : undefined,
     // token: 'MOCK_TOKEN_' + Math.random().toString(36).substr(2),
     token:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTE5ODY4ODgsInVzZXJfaWQiOjcsInVzZXJuYW1lIjoidGVzdF91c2VyMTIzIn0.5uxTavk6i8H36JjFWb1dmUOkqVnD8Kp6qN2ggMWdvDk',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTE5OTYxMjgsInVzZXJfaWQiOjcsInVzZXJuYW1lIjoidGVzdF91c2VyMTIzIn0.mZJnj4h3yju2QVw9fr1Iyn8sVOH2YMEIaaiULptcwKU',
     avatar: 'https://picsum.photos/seed/' + params.username + '/100/100'
     // createdAt: new Date()
   }

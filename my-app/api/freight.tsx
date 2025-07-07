@@ -1,4 +1,5 @@
 // api/freightService.ts
+import { MarginCargo } from '@/components/FindList';
 import client, { ApiError } from './client';
 
 // 定义货运订单数据类型
@@ -13,7 +14,7 @@ export interface FreightOrder {
   remark: string;
   order_date: string;
   price: number;
-  status: string;
+  status: number;
   // is_urgent: boolean;
   // has_insurance: boolean;
   user_id: number;
@@ -47,9 +48,42 @@ export const createFreightOrder = async (
  * 获取货运订单列表
  * @returns {Promise<FreightOrder[]>} - 包含订单列表的Promise
  */
-export const getFreightOrders = async (): Promise<FreightOrder[]> => {
+export const getFreightOrders = async (): Promise<MarginCargo[]> => {
   try {
-    const response = await client.get<FreightOrder[]>( '/api/freights' );
+    const response = await client.get<MarginCargo[]>( '/api/freights' );
+    return response.data; // 返回 response.data 而不是整个 response
+  } catch (error) {
+    console.error('获取货运订单列表失败:', error);
+    throw error as ApiError;
+  }
+};
+
+/**
+ * 获取货运订单详情
+ * @returns {Promise<FreightOrder[]>}
+ */
+export const getFreightOrderId = async (itemId: number): Promise<MarginCargo> => {
+  try {
+    const response = await client.get<MarginCargo>( `/api/freights/${itemId}` );
+    return response.data; // 返回 response.data 而不是整个 response
+  } catch (error) {
+    console.error('获取货运订单列表失败:', error);
+    throw error as ApiError;
+  }
+};
+
+/**
+ * 接单货运订单
+ * @returns {Promise<FreightOrder[]>}
+ */
+export const acceptOrder = async (userId: number, itemId: number) => {
+  try
+  {
+    const params = {
+      user_id: userId
+    }
+    console.log("params", params)
+    const response = await client.post( `/api/freights/${itemId}/accept`, params );
     return response.data; // 返回 response.data 而不是整个 response
   } catch (error) {
     console.error('获取货运订单列表失败:', error);

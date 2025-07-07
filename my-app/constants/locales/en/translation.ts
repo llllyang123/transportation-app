@@ -135,7 +135,8 @@ const enTranslation: TranslationResource = {
       '7': 'largeItems',
       '8': 'documents'
     },
-    price: 'price'
+    price: 'price',
+    selectOrderDate: 'Please select a date'
   },
   login: {
     title: 'login',

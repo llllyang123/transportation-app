@@ -1,7 +1,8 @@
+import { FreightOrder } from '@/api/freight';
 import { Feather, FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { t } from 'i18next';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, Modal, RefreshControl, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Button, Card, Switch } from 'react-native-paper';
 import CountryPicker from './CountryPicker';
@@ -15,12 +16,14 @@ export type Cargo = {
   type: string;
   typeid: number,
   remark: string;
-  date: string;
+  order_date: string;
   price: string;
   status: 1 | 2 | 3; //'待取' | '运输中' | '已完成';
   isUrgent: boolean;
   hasInsurance: boolean;
 };
+
+export type MarginCargo = Cargo & FreightOrder
 
 // 筛选条件类型
 type FilterParams = {
@@ -315,7 +318,7 @@ const TaobaoStyleFilter: React.FC<{
             </View>
             
             {/* 模态框内容 */}
-            <ScrollView style={styles.modalScrollView}>
+            <ScrollView horizontal style={styles.modalScrollView}>
               {activeTab === 'category' && (
                 <View style={styles.modalSection}>
                   <FlatList
@@ -598,7 +601,13 @@ export const HallScreen: React.FC<HallScreenProps> = ({
     isUrgent: false,
     hasInsurance: false,
   });
-  const [refreshing, setRefreshing] = useState(false);
+  const [ refreshing, setRefreshing ] = useState( false );
+  
+    // 关键修复：监听 cargos 变化，重新应用筛选
+    useEffect(() => {
+      // 当 cargos 变化时，用当前筛选条件重新计算 filteredCargos
+      applyFilters(filters);
+    }, [cargos]); // 依赖为 cargos，cargos 变化时触发
 
   // 处理筛选
   const handleFilter = (newFilters: FilterParams) => {
@@ -620,12 +629,12 @@ export const HallScreen: React.FC<HallScreenProps> = ({
     
     // 应用始发地筛选
     if (filters.selectedCountry) {
-      result = result.filter(cargo => cargo.origin.includes(filters.selectedCountry));
+      result = result.filter(cargo => cargo.origin_code.includes(filters.selectedCountry));
     }
     
     // 应用目的地筛选
     if (filters.destination) {
-      result = result.filter(cargo => cargo.destination.includes(filters.destination));
+      result = result.filter(cargo => cargo.destination_code.includes(filters.destination));
     }
     
     // 应用状态筛选
@@ -649,23 +658,23 @@ export const HallScreen: React.FC<HallScreenProps> = ({
     switch (filters.sort) {
       case 'price-asc':
         result.sort((a, b) => {
-          const priceA = parseInt(a.price.replace(/[^0-9]/g, ''));
-          const priceB = parseInt(b.price.replace(/[^0-9]/g, ''));
+          const priceA = parseInt(String(a.price).replace(/\D/g, ''), 10) || 0;
+          const priceB = parseInt(String(b.price).replace(/\D/g, ''), 10) || 0;
           return priceA - priceB;
         });
         break;
       case 'price-desc':
         result.sort((a, b) => {
-          const priceB = parseInt(b.price.replace(/[^0-9]/g, ''));
-          const priceA = parseInt(a.price.replace(/[^0-9]/g, ''));
+          const priceA = parseInt(String(a.price).replace(/\D/g, ''), 10) || 0;
+          const priceB = parseInt(String(b.price).replace(/\D/g, ''), 10) || 0;
           return priceB - priceA;
         });
         break;
       case 'time-new':
-        result.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        result.sort((a, b) => new Date(b.order_date).getTime() - new Date(a.order_date).getTime());
         break;
       case 'time-old':
-        result.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+        result.sort((a, b) => new Date(a.order_date).getTime() - new Date(b.order_date).getTime());
         break;
       default:
         // 默认排序（按ID倒序）

@@ -1,10 +1,12 @@
-import { Cargo, HallScreen } from '@/components/FindList'; // 导入封装好的组件
+import { getFreightOrders } from '@/api/freight';
+import { Cargo, HallScreen, MarginCargo } from '@/components/FindList'; // 导入封装好的组件
 import { onOrderRefresh } from '@/utils/eventBus';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
 import { t } from 'i18next';
 import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
+
 // 模拟数据
 const mockCargos: Cargo[] = [
   {
@@ -16,7 +18,7 @@ const mockCargos: Cargo[] = [
     type: 'Electronic products',
     typeid: 2,
     remark: '3C products, fragile, please handle with care',
-    date: '2023-05-15',
+    order_date: '2023-05-15',
     price: '$500',
     status: 1,
     isUrgent: true,
@@ -31,7 +33,7 @@ const mockCargos: Cargo[] = [
     type: 'Fresh',
     typeid: 3,
     remark: 'Cold chain transportation, refrigeration equipment is required',
-    date: '2023-05-16',
+    order_date: '2023-05-16',
     price: '$300',
     status: 1,
     isUrgent: false,
@@ -46,7 +48,7 @@ const mockCargos: Cargo[] = [
     type: 'General goods',
     typeid: 4,
     remark: 'Daily necessities, no special requirements',
-    date: '2023-05-14',
+    order_date: '2023-05-14',
     price: '$200',
     status: 2,
     isUrgent: false,
@@ -61,7 +63,7 @@ const mockCargos: Cargo[] = [
     type: 'Fragile goods',
     typeid: 5,
     remark: 'Glass products, please handle with care',
-    date: '2023-05-13',
+    order_date: '2023-05-13',
     price: '$800',
     status: 3,
     isUrgent: true,
@@ -76,7 +78,7 @@ const mockCargos: Cargo[] = [
     type: 'Valuables',
     typeid: 6,
     remark: 'High value items require special escort',
-    date: '2023-05-12',
+    order_date: '2023-05-12',
     price: '$1200',
     status: 1,
     isUrgent: true,
@@ -103,23 +105,23 @@ const customCategories = [
 ];
 
 // 自定义列表项内容
-const customRenderItemContent = (cargo: Cargo) => (
+const customRenderItemContent = (cargo: MarginCargo) => (
   <>
     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 }}>
       <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#333' }}>{cargo.type}</Text>
-      <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#1677ff' }}>{cargo.price}</Text>
+      <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#1677ff' }}>${cargo.price}</Text>
     </View>
     
     <View style={{ marginBottom: 12 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}>
-        <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#333' }}>{cargo.origin}</Text>
+        <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#333' }}>{cargo.origin_location}</Text>
         <View style={{ marginHorizontal: 8 }}>
           <MaterialIcons name="arrow-right-alt" size={20} color="#999" />
         </View>
-        <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#333' }}>{cargo.destination}</Text>
+        <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#333' }}>{cargo.destination_location}</Text>
       </View>
       
-      <Text style={{ fontSize: 14, color: '#666' }}>{cargo.date}</Text>
+      <Text style={{ fontSize: 14, color: '#666' }}>{cargo.order_date}</Text>
     </View>
     
     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -172,6 +174,7 @@ const MyHallScreen: React.FC = () =>
   const handleRefresh = () => {
     console.log('刷新数据...');
     // 这里可以添加刷新数据的逻辑
+    fetchCargos()
   };
 
   // 处理加载更多
@@ -192,7 +195,21 @@ const MyHallScreen: React.FC = () =>
     // const response = await fetch('https://api.example.com/cargos');
     // const data = await response.json();
     // setCargoList( data );
-    setCargoList( mockCargos );
+    const data = await getFreightOrders()
+    console.log("原始数据结构:", data); // 关键调试点
+      
+      // 检查数据是否有效
+      if (!Array.isArray(data)) {
+        throw new Error('返回数据不是数组类型');
+      }
+    // setCargoList( mockCargos );
+    setCargoList( data );
+    // 调试：验证数据是否符合预期
+    if (data.length > 0) {
+      console.log("第一个货物:", data[0]);
+    } else {
+      console.log("返回数据为空数组");
+    }
   } catch (error) {
     console.error('Failed to fetch cargos:', error);
   } finally {
@@ -214,7 +231,7 @@ useEffect(() => {
 
   return (
     <HallScreen
-      cargos={mockCargos}
+      cargos={cargoList}
       onItemPress={handleItemPress}
       onRefresh={handleRefresh}
       onLoadMore={handleLoadMore}
