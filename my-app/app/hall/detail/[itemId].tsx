@@ -85,7 +85,6 @@ export default function HallDetail() {
   // 模拟接单API（实际项目中应替换为真实API）
   const acceptOrderApi = async (itemId: number) => {
     // 检查订单ID是否有效
-    console.log('userid', user.id, itemId)
     await acceptOrder(user.id, itemId)
     if (!itemId) {
       throw new Error(t('hallDetail.invalidOrderId'));

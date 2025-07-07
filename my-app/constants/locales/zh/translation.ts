@@ -31,7 +31,8 @@ const zhTranslation: TranslationResource = {
     completed: '已完成',
     statusName: '状态',
     emergency: '紧急',
-    Insurance: '保险'
+    Insurance: '保险',
+    unknown: '未知状态'
   },
   hallDetail: {
     cargoDetails: '货物详情',
@@ -45,7 +46,16 @@ const zhTranslation: TranslationResource = {
     enter: '确定',
     error: '接单失败',
     tryAgain: '请重试',
-    finish: '完成'
+    finish: '完成',
+    acceptOrder: '接单',
+    routeInfo: '路线信息',
+    basicInfo: '基本信息',
+    orderDate: '订单日期',
+    contactInfo: '联系方式',
+    contact: '联系人',
+    email: '邮箱',
+    acceptSuccess: '接单成功',
+    acceptFailed: '接单失败'
   },
   finish: '完成',
   profile: '我的',
@@ -70,12 +80,18 @@ const zhTranslation: TranslationResource = {
     title: '我的订单',
     noOrders: '暂无订单',
     loading: '正在加载订单...',
-    orderDetail: '订单详情'
+    orderDetail: '订单详情',
+    notFound: '订单不存在或已删除'
   },
   orderStatus: {
-    1: '待付款',
-    2: '待发货',
-    3: '已完成',
+    // 1: '待付款',
+    // 2: '待发货',
+    // 3: '已完成',
+    // 4: '已取消',
+    // 5: '已退款',
+    1: '待接单', // 覆盖原有"待付款"，与业务对齐
+    2: '运输中', // 覆盖原有"待发货"，与业务对齐
+    3: '已完成', // 保持不变，与业务对齐
     4: '已取消',
     5: '已退款'
   },
@@ -120,7 +136,10 @@ const zhTranslation: TranslationResource = {
     confirm: '确认',
     search: '搜索',
     selectCountry: '选择国家',
-    error: '错误'
+    error: '错误',
+    success: '成功',
+    loading: '加载中...',
+    tryAgain: '请重试'
   },
   publish: {
     title: '发布信息',
@@ -175,7 +194,14 @@ const zhTranslation: TranslationResource = {
     passwordLength: '密码必须至少包含 6 个字符',
     passwordMismatch: '密码不匹配'
   },
-  loginOut: '退出登录'
+  loginOut: '退出登录',
+  userOrders: {
+    // 新增用户订单列表页翻译
+    noUserId: '用户ID不存在',
+    fetchFailed: '获取订单失败',
+    noOrders: '暂无订单记录',
+    loadingMore: '加载更多...'
+  }
 }
 
 export default zhTranslation
