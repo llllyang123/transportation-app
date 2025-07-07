@@ -17,9 +17,11 @@ export const loginApi = async (params: LoginParams): Promise<LoginResponse> => {
     // id: 'USER-' + Date.now(),
     id: Math.round(10),
     username: params.username,
-    phone: params.username.startsWith('1') ? params.username : undefined,
+    // phone: params.username.startsWith('1') ? params.username : undefined,
     email: params.username.includes('@') ? params.username : undefined,
-    token: 'MOCK_TOKEN_' + Math.random().toString(36).substr(2),
+    // token: 'MOCK_TOKEN_' + Math.random().toString(36).substr(2),
+    token:
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTE5ODY4ODgsInVzZXJfaWQiOjcsInVzZXJuYW1lIjoidGVzdF91c2VyMTIzIn0.5uxTavk6i8H36JjFWb1dmUOkqVnD8Kp6qN2ggMWdvDk',
     avatar: 'https://picsum.photos/seed/' + params.username + '/100/100'
     // createdAt: new Date()
   }

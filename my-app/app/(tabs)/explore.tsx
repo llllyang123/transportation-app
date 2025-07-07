@@ -1,7 +1,8 @@
 import UserPage from '@/app/profile';
 import { useAuth } from '@/context/AuthContext';
 import { useNavigation, useRouter } from 'expo-router';
-import { StyleSheet } from 'react-native';
+import { useEffect } from 'react';
+import { StyleSheet, View } from 'react-native';
 
 export default function ProfileHome() {
   const router = useRouter();
@@ -9,11 +10,27 @@ export default function ProfileHome() {
   const { isAuthenticated, loading } = useAuth();
   console.log( 'isAuthenticated', isAuthenticated )
   const navigation = useNavigation()
-  if ( !isAuthenticated )
-  {
-    // router.push( '/auth/LoginScreen' )
-    navigation.navigate('auth/LoginScreen')
-    return
+  // if ( !isAuthenticated )
+  // {
+  //   // router.push( '/auth/LoginScreen' )
+  //   navigation.navigate('auth/LoginScreen')
+  //   return
+  // }
+
+  useEffect(() => {
+    // 确保加载完成后再判断（避免初始加载时的错误跳转）
+    if (!loading && !isAuthenticated) {
+      // 执行导航（此时已脱离渲染阶段）
+      router.push('auth/LoginScreen'); 
+      // 或 navigation.navigate('Login');
+    }
+  }, [ isAuthenticated, loading, router, navigation ] ); // 依赖变化时触发
+  
+   // 加载中显示占位符
+   if (loading) {
+     return <View>
+       加载中...
+     </View>;
   }
 
   return (

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 interface PriceInputProps {
-  onPriceChange: (price: number | null) => void;
+  onPriceChange: (price: number) => void;
   initialPrice?: number;
   placeholder?: string;
 }
@@ -39,13 +39,13 @@ const PriceInput: React.FC<PriceInputProps> = ({
     
     // 转换为数字并传递给父组件
     if (formattedText === '') {
-      onPriceChange(null);
+      onPriceChange(0);
       setError(null);
     } else {
       const price = parseFloat(formattedText);
       if (isNaN(price)) {
         setError(t('validation.invalidPrice'));
-        onPriceChange(null);
+        onPriceChange(0);
       } else {
         setError(null);
         onPriceChange(price);

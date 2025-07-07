@@ -1,16 +1,22 @@
+import { createFreightOrder } from "@/api/freight";
 import CategoryPicker from "@/components/CategoryPicker";
 import CountryPicker from "@/components/CountryPicker";
 import PriceInput from "@/components/PriceInput";
+import { useAuth } from "@/context/AuthContext";
+import { CategoryData } from "@/mocks/orders";
 import { useNavigation, useRouter } from 'expo-router';
 import { Formik } from 'formik';
+import { t } from "i18next";
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
 
 type PublishForm = {
-  origin: string;
-  destination: string;
-  location: string;
+  origin_location: string;
+  origin_code: string;
+  destination_location: string;
+  destination_code: string;
+  // location: string;
   type: string;
   typeid: number,
   remark: string;
@@ -20,11 +26,13 @@ type PublishForm = {
 };
 
 const initialValues: PublishForm = {
-  origin: '',
-  destination: '',
-  location: '',
-  type: '普通货物',
-  typeid: 2,
+  origin_location: '',
+  origin_code: '',
+  destination_location: '',
+  destination_code: '',
+  // location: '',
+  type: `${t('publish.typeList.4')}`,
+  typeid: 4,
   remark: '',
   contact: '',
   email: '',
@@ -35,18 +43,25 @@ const initialValues: PublishForm = {
 export default function Publish() {
   
   const router = useRouter();
-  const [price, setPrice] = useState<number | null>(null);
-
-  const handleSubmit = ( values: PublishForm ) =>
+  const [ price, setPrice ] = useState<number>( 0 );
+  const { user } = useAuth();
+  console.log( "user", user )
+  const handleSubmit = async ( values: PublishForm ) =>
   {
-    console.log( values )
+    const nameKey = CategoryData.find( ( item ) => item.id == values.typeid )?.nameKey
+    const typeName = t(nameKey)
     const data = { ...values, ...{
-      origin: selectedCountry,
-      destination: selectedCountryEnd,
-      price: price
+      // origin_location: selectedCountry,
+      origin_code: selectedCountry?.iso_code,
+      // destination_location: selectedCountryEnd,
+      destination_code: selectedCountryEnd?.iso_code,
+      price: price,
+      type: typeName,
+      order_date: "2023-05-15",
+      user_id: user.id
     }
     }
-    console.log( data )
+    await createFreightOrder(data)
     alert(t('publishedSuccessfully'));
     router.push('/'); // 返回首页
   };
@@ -54,17 +69,19 @@ export default function Publish() {
   const navigation = useNavigation();
   const [ selectedCategoryId, setSelectedCategoryId ] = React.useState( 2 );
   
-const [ selectedCountry, setSelectedCountry ] = useState( '' );
-const [selectedCountryEnd, setSelectedCountryEnd] = useState('');
+const [ selectedCountry, setSelectedCountry ] = useState({"capital": "", "continent": "", "country_name": "", "country_short_name": "", "iso_code": ""});
+const [selectedCountryEnd, setSelectedCountryEnd] = useState({"capital": "", "continent": "", "country_name": "", "country_short_name": "", "iso_code": ""});
 
   const handleCountrySelect = (country:any) => {
     console.log("Selected country:", country);
-    setSelectedCountry(country.iso_code);
+    // setSelectedCountry(country.iso_code);
+    setSelectedCountry(country);
   };
 
   const handleCountrySelectEnd = (country: any) => {
     console.log("Selected country end:", country);
-    setSelectedCountryEnd(country.iso_code);
+    // setSelectedCountryEnd(country.iso_code);
+    setSelectedCountryEnd(country);
   };
 
   const handleCategorySelect = (categoryId: number) => {
@@ -96,12 +113,12 @@ const [selectedCountryEnd, setSelectedCountryEnd] = useState('');
               showSearch={true}
             />
             
-            {/* <TextInput
+            <TextInput
               style={styles.input}
-              placeholder={t('origin')}
-              onChangeText={handleChange('origin')}
-              value={values.origin}
-            /> */}
+              placeholder={t('specificLocation')}
+              onChangeText={handleChange('origin_location')}
+              value={values.origin_location}
+            />
 
             <CountryPicker 
               lab='destination'
@@ -120,8 +137,8 @@ const [selectedCountryEnd, setSelectedCountryEnd] = useState('');
             <TextInput
               style={styles.input}
               placeholder={t('specificLocation')}
-              onChangeText={handleChange('location')}
-              value={values.location}
+              onChangeText={handleChange('destination_location')}
+              value={values.destination_location}
             />
 
             {/* <TextInput

@@ -730,7 +730,7 @@
     "@babel/plugin-transform-modules-commonjs" "^7.27.1"
     "@babel/plugin-transform-typescript" "^7.27.1"
 
-"@babel/runtime@^7.18.6", "@babel/runtime@^7.20.0", "@babel/runtime@^7.25.0", "@babel/runtime@^7.27.1", "@babel/runtime@^7.27.6":
+"@babel/runtime@^7.18.6", "@babel/runtime@^7.20.0", "@babel/runtime@^7.20.6", "@babel/runtime@^7.25.0", "@babel/runtime@^7.27.1", "@babel/runtime@^7.27.6":
   version "7.27.6"
   resolved "https://registry.npmmirror.com/@babel/runtime/-/runtime-7.27.6.tgz"
   integrity sha512-vbavdySgbTTrmFE+EsiqUTzlOr5bzlnJtUv9PynGCAKvfQqjIXbvFdumPM/GxMDfyuGMJaJAU6TO4zc1Jf1i8Q==
@@ -1607,6 +1607,14 @@
   resolved "https://registry.npmmirror.com/@react-native/normalize-colors/-/normalize-colors-0.79.3.tgz"
   integrity sha512-T75NIQPRFCj6DFMxtcVMJTZR+3vHXaUMSd15t+CkJpc5LnyX91GVaPxpRSAdjFh7m3Yppl5MpdjV/fntImheYQ==
 
+"@react-native/virtualized-lists@^0.72.4":
+  version "0.72.8"
+  resolved "https://registry.npmmirror.com/@react-native/virtualized-lists/-/virtualized-lists-0.72.8.tgz"
+  integrity sha512-J3Q4Bkuo99k7mu+jPS9gSUSgq+lLRSI/+ahXNwV92XgJ/8UgOTxu2LPwhJnBk/sQKxq7E8WkZBnBiozukQMqrw==
+  dependencies:
+    invariant "^2.2.4"
+    nullthrows "^1.1.1"
+
 "@react-native/virtualized-lists@0.79.3":
   version "0.79.3"
   resolved "https://registry.npmmirror.com/@react-native/virtualized-lists/-/virtualized-lists-0.79.3.tgz"
@@ -1700,6 +1708,16 @@
   dependencies:
     tslib "^2.4.0"
 
+"@types/axios@^0.9.36":
+  version "0.9.36"
+  resolved "https://registry.npmmirror.com/@types/axios/-/axios-0.9.36.tgz"
+  integrity sha512-NLOpedx9o+rxo/X5ChbdiX6mS1atE4WHmEEIcR9NLenRVa5HoVjAvjafwU3FPTqnZEstpoqCaW7fagqSoTDNeg==
+
+"@types/babel__code-frame@*":
+  version "7.0.6"
+  resolved "https://registry.npmmirror.com/@types/babel__code-frame/-/babel__code-frame-7.0.6.tgz"
+  integrity sha512-Anitqkl3+KrzcW2k77lRlg/GfLZLWXBuNgbEcIOU6M92yw42vsd3xV/Z/yAHEj8m+KUjL6bWOVOFqX8PFPJ4LA==
+
 "@types/babel__core@^7.1.14":
   version "7.20.5"
   resolved "https://registry.npmmirror.com/@types/babel__core/-/babel__core-7.20.5.tgz"
@@ -1792,6 +1810,79 @@
   resolved "https://registry.npmmirror.com/@types/json5/-/json5-0.0.29.tgz"
   integrity sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==
 
+"@types/metro-babel-transformer@*":
+  version "0.76.0"
+  resolved "https://registry.npmmirror.com/@types/metro-babel-transformer/-/metro-babel-transformer-0.76.0.tgz"
+  integrity sha512-ctZPAeNrR9HOvH968gCMPa2YAFDkGhqhoceYlXB+Tp/eQu/crzUR3I7j9UKv8t9enuvd5OWLAQm3hJz+QCtPZg==
+  dependencies:
+    "@types/metro-source-map" "*"
+
+"@types/metro-cache@*":
+  version "0.76.0"
+  resolved "https://registry.npmmirror.com/@types/metro-cache/-/metro-cache-0.76.0.tgz"
+  integrity sha512-5YsoNnEWQ3X2OI1whVItKeL7iMLHIQg3aWKHGsK3Idau6MTTSQMjw/oh2SbTiiHdzrBaXJfQ25ApMPCMMdurDg==
+  dependencies:
+    "@types/node" "*"
+
+"@types/metro-config@*", "@types/metro-config@^0.76.2":
+  version "0.76.2"
+  resolved "https://registry.npmmirror.com/@types/metro-config/-/metro-config-0.76.2.tgz"
+  integrity sha512-oxV5sbFCCW0CF1hLKu62/h3OQRar9IdpKxNEkoy6A590eiNC0e4Cwl3S/ZQMeiwxVljGt1/jX++OL0ohof1oAA==
+  dependencies:
+    "@types/metro" "*"
+    "@types/metro-cache" "*"
+    "@types/metro-resolver" "*"
+    "@types/metro-transform-worker" "*"
+
+"@types/metro-core@*":
+  version "0.76.0"
+  resolved "https://registry.npmmirror.com/@types/metro-core/-/metro-core-0.76.0.tgz"
+  integrity sha512-7iBXd1CiBNHVBPrVbjG2xy8KJq1l6aohQftyqH89FZL/h1cwxxgxt3QtdeYGN7ATOgqAl7iI3BkRd2th4diBvA==
+  dependencies:
+    "@types/node" "*"
+
+"@types/metro-file-map@*":
+  version "0.76.0"
+  resolved "https://registry.npmmirror.com/@types/metro-file-map/-/metro-file-map-0.76.0.tgz"
+  integrity sha512-61sPxJZG5zEn/8grZfapDOBN517Z4ejHjXrcnMkudBxLrtCxLOcC495JRIfEn7mvV776Z488mNYGMfoPApht2A==
+  dependencies:
+    "@types/metro-config" "*"
+
+"@types/metro-resolver@*":
+  version "0.76.1"
+  resolved "https://registry.npmmirror.com/@types/metro-resolver/-/metro-resolver-0.76.1.tgz"
+  integrity sha512-GAzz8yV7azX1RWmRSLsdPe1ml2vOmaJftirLR/7lSMmDOPJ8G/n8VdnjuoI0uOvth7EmFRwyGBBzF7nceenvOQ==
+
+"@types/metro-source-map@*":
+  version "0.76.0"
+  resolved "https://registry.npmmirror.com/@types/metro-source-map/-/metro-source-map-0.76.0.tgz"
+  integrity sha512-nxx7MjnQJKzftTMDp6voMqdHjy4rL0gHeJHG2LYLcqdl9gs3sxeoAC1wx39SoeSYgsadWUvnj7GrJWMhP4oGvg==
+
+"@types/metro-transform-worker@*":
+  version "0.76.0"
+  resolved "https://registry.npmmirror.com/@types/metro-transform-worker/-/metro-transform-worker-0.76.0.tgz"
+  integrity sha512-jCpU73gb49YKKK8qtGzjMSh86HWG0IQiBgbUYU3WhXtReCVuA2Sy9sXXCiF9kZvnsqtRNbg2MR4ww8i1XEg/nw==
+  dependencies:
+    "@types/metro" "*"
+    "@types/metro-babel-transformer" "*"
+    "@types/metro-source-map" "*"
+
+"@types/metro@*":
+  version "0.76.0"
+  resolved "https://registry.npmmirror.com/@types/metro/-/metro-0.76.0.tgz"
+  integrity sha512-3WIyw3e0QxF7XBvFuQIpBqui/7lYtFE8xpFIMKY+i+U9ERdbktBOEGXcN6gqG56BHq89502Ts5fxpOSrLEH3fQ==
+  dependencies:
+    "@types/babel__code-frame" "*"
+    "@types/metro-babel-transformer" "*"
+    "@types/metro-config" "*"
+    "@types/metro-core" "*"
+    "@types/metro-file-map" "*"
+    "@types/metro-resolver" "*"
+    "@types/metro-source-map" "*"
+    "@types/metro-transform-worker" "*"
+    "@types/ws" "*"
+    "@types/yargs" "*"
+
 "@types/node@*":
   version "22.15.30"
   resolved "https://registry.npmmirror.com/@types/node/-/node-22.15.30.tgz"
@@ -1807,6 +1898,14 @@
     "@types/i18next" "*"
     "@types/react" "*"
 
+"@types/react-native@^0.72.8":
+  version "0.72.8"
+  resolved "https://registry.npmmirror.com/@types/react-native/-/react-native-0.72.8.tgz"
+  integrity sha512-St6xA7+EoHN5mEYfdWnfYt0e8u6k2FR0P9s2arYgakQGFgU1f9FlPrIEcj0X24pLCF5c5i3WVuLCUdiCYHmOoA==
+  dependencies:
+    "@react-native/virtualized-lists" "^0.72.4"
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@^19.0.0", "@types/react@~19.0.10":
   version "19.0.14"
   resolved "https://registry.npmmirror.com/@types/react/-/react-19.0.14.tgz"
@@ -1819,12 +1918,19 @@
   resolved "https://registry.npmmirror.com/@types/stack-utils/-/stack-utils-2.0.3.tgz"
   integrity sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==
 
+"@types/ws@*":
+  version "8.18.1"
+  resolved "https://registry.npmmirror.com/@types/ws/-/ws-8.18.1.tgz"
+  integrity sha512-ThVF6DCVhA8kUGy+aazFQ4kXQ7E1Ty7A3ypFOe0IcJV8O/M511G99AW24irKrW56Wt44yG9+ij8FaqoBGkuBXg==
+  dependencies:
+    "@types/node" "*"
+
 "@types/yargs-parser@*":
   version "21.0.3"
   resolved "https://registry.npmmirror.com/@types/yargs-parser/-/yargs-parser-21.0.3.tgz"
   integrity sha512-I4q9QU9MQv4oEOz4tAHJtNz1cwuLxn2F3xcc2iV5WdqLPpUnj30aUuxt1mAxYTG+oe8CZMV/+6rU4S4gRDzqtQ==
 
-"@types/yargs@^17.0.8":
+"@types/yargs@*", "@types/yargs@^17.0.8":
   version "17.0.33"
   resolved "https://registry.npmmirror.com/@types/yargs/-/yargs-17.0.33.tgz"
   integrity sha512-WpxBCKWPLr4xSsHgz511rFJAM+wS28w2zEO1QDNY5zM/S8ok70NNfztH0xwhqKyaK0OHCbN98LDAZuy1ctxDkA==
@@ -2297,12 +2403,26 @@ async-limiter@~1.0.0:
   resolved "https://registry.npmmirror.com/async-limiter/-/async-limiter-1.0.1.tgz"
   integrity sha512-csOlWGAcRFJaI6m+F2WKdnMKr4HhdhFVBk0H/QbJFMCr+uO2kwohwXQPxw/9OCxp05r5ghVBFSyioixx3gfkNQ==
 
+asynckit@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.npmmirror.com/asynckit/-/asynckit-0.4.0.tgz"
+  integrity sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==
+
 available-typed-arrays@^1.0.7:
   version "1.0.7"
   resolved "https://registry.npmmirror.com/available-typed-arrays/-/available-typed-arrays-1.0.7.tgz"
   integrity sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==
   dependencies:
     possible-typed-array-names "^1.0.0"
+
+axios@^1.10.0:
+  version "1.10.0"
+  resolved "https://registry.npmmirror.com/axios/-/axios-1.10.0.tgz"
+  integrity sha512-/1xYAC4MP/HEG+3duIhFr4ZQXR4sQXOIe+o6sdqzeykGLx6Upp/1p8MHqhINOvGeP7xyNHe7tsiJByc4SSVUxw==
+  dependencies:
+    follow-redirects "^1.15.6"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
 
 babel-jest@^29.7.0:
   version "29.7.0"
@@ -2756,6 +2876,13 @@ color@^4.2.3:
     color-convert "^2.0.1"
     color-string "^1.9.0"
 
+combined-stream@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.npmmirror.com/combined-stream/-/combined-stream-1.0.8.tgz"
+  integrity sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==
+  dependencies:
+    delayed-stream "~1.0.0"
+
 commander@^12.0.0:
   version "12.1.0"
   resolved "https://registry.npmmirror.com/commander/-/commander-12.1.0.tgz"
@@ -3000,6 +3127,11 @@ define-properties@^1.1.3, define-properties@^1.2.1:
     has-property-descriptors "^1.0.0"
     object-keys "^1.1.1"
 
+delayed-stream@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmmirror.com/delayed-stream/-/delayed-stream-1.0.0.tgz"
+  integrity sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==
+
 depd@2.0.0:
   version "2.0.0"
   resolved "https://registry.npmmirror.com/depd/-/depd-2.0.0.tgz"
@@ -3029,7 +3161,17 @@ dotenv-expand@~11.0.6:
   dependencies:
     dotenv "^16.4.5"
 
-dotenv@^16.4.5, dotenv@~16.4.5:
+dotenv@^16.4.5:
+  version "16.6.1"
+  resolved "https://registry.npmmirror.com/dotenv/-/dotenv-16.6.1.tgz"
+  integrity sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==
+
+dotenv@^17.0.1:
+  version "17.0.1"
+  resolved "https://registry.npmmirror.com/dotenv/-/dotenv-17.0.1.tgz"
+  integrity sha512-GLjkduuAL7IMJg/ZnOPm9AnWKJ82mSE2tzXLaJ/6hD6DhwGfZaXG77oB8qbReyiczNxnbxQKyh0OE5mXq0bAHA==
+
+dotenv@~16.4.5:
   version "16.4.7"
   resolved "https://registry.npmmirror.com/dotenv/-/dotenv-16.4.7.tgz"
   integrity sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==
@@ -3758,6 +3900,11 @@ flow-enums-runtime@^0.0.6:
   resolved "https://registry.npmmirror.com/flow-enums-runtime/-/flow-enums-runtime-0.0.6.tgz"
   integrity sha512-3PYnM29RFXwvAN6Pc/scUfkI7RwhQ/xqyLUyPNlXUp9S40zI8nup9tUSrTLSVnWGBN38FNiGWbwZOB6uR4OGdw==
 
+follow-redirects@^1.15.6:
+  version "1.15.9"
+  resolved "https://registry.npmmirror.com/follow-redirects/-/follow-redirects-1.15.9.tgz"
+  integrity sha512-gew4GsXizNgdoRyqmyfMHyAmXsZDk6mHkSxZFCzW9gwlbtOW44CDtYavM+y+72qD/Vq2l550kMF52DT8fOLJqQ==
+
 fontfaceobserver@^2.1.0:
   version "2.3.0"
   resolved "https://registry.npmmirror.com/fontfaceobserver/-/fontfaceobserver-2.3.0.tgz"
@@ -3777,6 +3924,17 @@ foreground-child@^3.1.0:
   dependencies:
     cross-spawn "^7.0.6"
     signal-exit "^4.0.1"
+
+form-data@^4.0.0:
+  version "4.0.3"
+  resolved "https://registry.npmmirror.com/form-data/-/form-data-4.0.3.tgz"
+  integrity sha512-qsITQPfmvMOSAdeyZ+12I1c+CKSstAFAwu+97zrnWAbIr5u8wfsExUzCesVLC8NgHuRUqNN4Zy6UPWUTRGslcA==
+  dependencies:
+    asynckit "^0.4.0"
+    combined-stream "^1.0.8"
+    es-set-tostringtag "^2.1.0"
+    hasown "^2.0.2"
+    mime-types "^2.1.12"
 
 formik@^2.4.6:
   version "2.4.6"
@@ -5102,7 +5260,7 @@ mime-db@1.52.0:
   resolved "https://registry.npmmirror.com/mime-db/-/mime-db-1.52.0.tgz"
   integrity sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==
 
-mime-types@^2.1.27, mime-types@~2.1.34:
+mime-types@^2.1.12, mime-types@^2.1.27, mime-types@~2.1.34:
   version "2.1.35"
   resolved "https://registry.npmmirror.com/mime-types/-/mime-types-2.1.35.tgz"
   integrity sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==
@@ -5635,6 +5793,11 @@ prop-types@^15.8.1:
     object-assign "^4.1.1"
     react-is "^16.13.1"
 
+proxy-from-env@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmmirror.com/proxy-from-env/-/proxy-from-env-1.1.0.tgz"
+  integrity sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==
+
 punycode@^2.1.0, punycode@^2.1.1:
   version "2.3.1"
   resolved "https://registry.npmmirror.com/punycode/-/punycode-2.3.1.tgz"
@@ -5748,6 +5911,13 @@ react-is@^19.1.0:
   version "19.1.0"
   resolved "https://registry.npmmirror.com/react-is/-/react-is-19.1.0.tgz"
   integrity sha512-Oe56aUPnkHyyDxxkvqtd7KkdQP5uIUfHxd5XTb3wE9d/kRnZLmKbDB0GWk919tdQ+mxxPtG6EAs6RMT6i1qtHg==
+
+react-native-dotenv@^3.4.11:
+  version "3.4.11"
+  resolved "https://registry.npmmirror.com/react-native-dotenv/-/react-native-dotenv-3.4.11.tgz"
+  integrity sha512-6vnIE+WHABSeHCaYP6l3O1BOEhWxKH6nHAdV7n/wKn/sciZ64zPPp2NUdEUf1m7g4uuzlLbjgr+6uDt89q2DOg==
+  dependencies:
+    dotenv "^16.4.5"
 
 react-native-edge-to-edge@1.6.0:
   version "1.6.0"

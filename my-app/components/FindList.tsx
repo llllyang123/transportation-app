@@ -8,8 +8,10 @@ import CountryPicker from './CountryPicker';
 // 货物数据类型
 export type Cargo = {
   id: number;
-  origin: string;
-  destination: string;
+  origin_location: string;
+  origin_code: string,
+  destination_location: string;
+  destination_code: string,
   type: string;
   typeid: number,
   remark: string;
