@@ -1,11 +1,12 @@
 // context/AuthContext.ts
-import { loginApi } from '@/api/auth';
+import { loginApi, registerApi } from '@/api/auth';
 import { User } from '@/models/user';
 import { clearAuth, getAuth, saveAuth } from '@/utils/authStorage';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 interface AuthContextType {
   user: User;
+  token: string
   isAuthenticated: boolean;
   loading: boolean;
   login: (username: string, password: string) => Promise<void>;
@@ -17,7 +18,8 @@ const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [ loading, setLoading ] = useState( true );
+  const [token, setToken] = useState('')
 
   // 初始化时从缓存加载用户
   useEffect(() => {
@@ -41,15 +43,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const login = async (username: string, password: string) => {
     try {
       // 调用登录API
-      const response = await loginApi({ username, password });
+      const {user, token} = await loginApi({ username, password });
       
-      if (!response.user || !response.user.token) {
+      if (!user || !token) {
         throw new Error('登录失败: 未收到有效的用户信息');
       }
       
       // 保存用户信息到状态和缓存
-      setUser(response.user);
-      await saveAuth(response.user);
+      setUser( user );
+      setToken(token)
+      await saveAuth(user);
       
     } catch (error) {
       console.error('登录失败:', error);
@@ -61,20 +64,24 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const register = async (username: string, email: string, password: string) => {
     try {
       // 实际项目中应调用注册API
-      console.log('注册用户:', { username, email });
-      
+      console.log('注册用户:', { username, email, password });
+      const newUser = await registerApi( {
+        username: username,
+        email: email,
+        password: password
+      } )
       // 模拟注册成功并返回用户信息
-      const newUser: User = {
-        id: Date.now(), // 模拟用户ID
-        username,
-        email,
-        token: "mock-token-" + Math.random().toString(36).substring(7), // 模拟token
-        // 其他用户字段
-      };
+      // const newUser: User = {
+      //   id: Date.now(), // 模拟用户ID
+      //   username,
+      //   email,
+      //   token: "mock-token-" + Math.random().toString(36).substring(7), // 模拟token
+      //   // 其他用户字段
+      // };
       
       // 保存用户信息
-      setUser(newUser);
-      await saveAuth(newUser);
+      // setUser(newUser);
+      // await saveAuth(newUser);
       
     } catch (error) {
       console.error('注册失败:', error);
@@ -97,7 +104,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     <AuthContext.Provider 
       value={{ 
         user,
-        isAuthenticated: !!user && !!user.token, // 确保用户和token都存在
+        setUser,
+        isAuthenticated: !!user && !!token, // 确保用户和token都存在
         loading,
         login,
         register,

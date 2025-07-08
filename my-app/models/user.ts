@@ -5,6 +5,8 @@ export interface User {
   email?: string
   token?: string
   avatar?: string
+  role?: string
+  six?: string
   // createdAt: Date
 }
 
@@ -23,7 +25,7 @@ export interface RegistrationData {
   username: string
   email: string
   password: string
-  confirmPassword: string
+  // confirmPassword: string
 }
 
 // 登录表单数据类型

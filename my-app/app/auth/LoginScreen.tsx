@@ -57,16 +57,16 @@ const LoginScreen = () => {
     try {
       // 调用登录方法
       await login(username, password);
-      
       // 登录成功后返回上一页或主页
-      if ( navigation.canGoBack() )
-      {
-        // navigation.goBack();
-        router.replace('/(tabs)/explore')
-        // navigation.reset('profile/index')
-      } else {
-        navigation.navigate('index');
-      }
+      router.replace('/(tabs)/explore')
+      // if ( navigation.canGoBack() )
+      // {
+      //   // navigation.goBack();
+      //   router.replace('/(tabs)/explore')
+      //   // navigation.reset('profile/index')
+      // } else {
+      //   navigation.navigate('index');
+      // }
     } catch (error: any) {
       setError(error.message || t('login.failed'));
       Alert.alert(t('common.error'), error.message || t('login.failed'));

@@ -119,7 +119,6 @@ export const getUserFreightOrders = async (
     
     const url = `/api/freights/user/${userId}?${queryParams.toString()}`;
     const response = await client.get<MarginCargo[]>( url );
-    console.log("response", response.data)
     return response.data;
   } catch (error) {
     console.error(`获取用户${userId}的货运订单列表失败:`, error);

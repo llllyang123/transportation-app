@@ -94,7 +94,7 @@ export default function OrderDetailScreen() {
       // 显示成功提示
       Alert.alert(
         t('success'),
-        t('orderDetail.acceptSuccess'),
+        t('hallDetail.success'),
         [
           {
             text: t('confirm'),

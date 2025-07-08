@@ -70,7 +70,8 @@ export default function RegisterScreen() {
       Alert.alert(t('register.success'), t('register.successMessage'), [
         {
           text: 'OK',
-          onPress: () => {router.replace('/(tabs)/explore')}
+          // onPress: () => {router.replace('/(tabs)/explore')}
+          onPress: ()=>{router.replace('/auth/LoginScreen')}
         },
       ]);
     } catch (error) {

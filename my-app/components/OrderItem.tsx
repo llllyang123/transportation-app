@@ -52,7 +52,7 @@ export default function OrderItem({ order, onPress }: OrderItemProps) {
   };
 
   const status = getStatusStyle();
-  console.log("status", order)
+  // console.log("status", order)
   const [orders, setOrders] = useState<MarginCargo[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);

@@ -16,10 +16,25 @@ const client = axios.create({
   }
 })
 
+// 需要排除 token 拦截的接口路径（登录/注册相关）
+const NO_AUTH_PATHS = [
+  '/api/users/login', // 登录接口
+  '/api/users/register' // 注册接口
+]
 // 请求拦截器
 client.interceptors.request.use(
   async config => {
     try {
+      // 判断当前请求的接口是否需要排除 token 拦截
+      const isNoAuthPath = NO_AUTH_PATHS.some(path =>
+        config.url?.startsWith(path)
+      )
+
+      // 如果是无需 token 的接口，直接返回配置
+      if (isNoAuthPath) {
+        return config
+      }
+      // 非排除接口：添加 token
       const storedUser = await getAuth()
       if (storedUser && storedUser.token) {
         config.headers.Authorization = `Bearer ${storedUser.token}`
@@ -50,10 +65,12 @@ client.interceptors.response.use(
           if (user) clearAuth()
         })
       }
-
       return Promise.reject({
         status: error.response.status,
-        message: error.response.data.message || '服务器错误'
+        message:
+          error.response.data.message ||
+          error.response.data.error ||
+          '服务器错误'
       } as ApiError)
     } else if (error.request) {
       return Promise.reject({

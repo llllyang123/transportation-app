@@ -45,7 +45,10 @@ export default function OrderList() {
         ...filter, 
         page: currentPage 
       });
-
+      if ( !data )
+      {
+        return
+      }
       // 适配类型（如果MarginCargo与Order字段一致，可直接赋值）
       const adaptedData = data as AdaptedOrder[];
 
@@ -94,7 +97,6 @@ export default function OrderList() {
 
   // 打开订单详情
   const openDetail = (order: AdaptedOrder) => {
-    console.log("ListOrderId", order.id)
     navigation.navigate('profile/orders/detail/[orderId]', { 
       orderId: order.id
     });

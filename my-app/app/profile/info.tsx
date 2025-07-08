@@ -1,36 +1,50 @@
-import BirthdayPicker from '@/components/BirthdayPicker';
+import { updateInfoApi } from '@/api/auth';
+import { useAuth } from '@/context/AuthContext';
 import DateTimePickerNative from '@react-native-community/datetimepicker';
 import { useNavigation, useRouter } from 'expo-router';
 import { t } from 'i18next';
 import React, { useState } from 'react';
 import DatePickerWeb from 'react-datepicker';
-import { Image, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 // 个人信息类型
 type UserInfo = {
   username: string;
-  phone: string;
+  // phone: string;
   email: string;
-  gender: any;
+  six: any;
   birthday: string;
 };
 
 const initialUserInfo: UserInfo = {
-  username: `${t('userName')}`,
-  phone: '13800138000',
-  email: 'example@example.com',
-  gender: `${t('male')}`,
-  birthday: '1990-01-01',
+  // username: `${t('userName')}`,
+  // // phone: '13800138000',
+  // email: 'example@example.com',
+  // six: `${t('male')}`,
+  // birthday: '1990-01-01',
+  username: '',
+  // phone: '13800138000',
+  email: '',
+  six: '',
+  birthday: '',
 };
 
 export default function ProfileInfo() {
   const router = useRouter();
-  const [userInfo, setUserInfo] = React.useState(initialUserInfo);
+  const {user, setUser} = useAuth()
+  const [userInfo, setUserInfo] = React.useState({...initialUserInfo, ...user});
   const DateTimePicker = Platform.OS === 'web' ? DatePickerWeb : DateTimePickerNative;
 
-  const handleSave = () => {
+  const handleSave = async () => {
     // 这里可添加保存逻辑（如调用接口）
-    router.goBack(); // 保存后返回上一页
+    const updateInfo = await updateInfoApi( {
+      user_id: userInfo.id,
+      gender: userInfo.six
+    } )
+    setUser({...user, ...updateInfo.user})
+    alert("success")
+    // router.goBack(); // 保存后返回上一页
+    navigation.goBack() // 保存后返回上一页
   };
   const navigation = useNavigation();
   // 生日状态，初始可设为当前日期或从存储读取
@@ -83,17 +97,18 @@ export default function ProfileInfo() {
 
       <View style={styles.formContainer}>
         <View style={styles.formItem}>
-          <Text style={ styles.label }>{ t('userInfo')}</Text>
-          <TextInput
+          <Text style={ styles.label }>{ t( 'userInfo' ) }</Text>
+          <Text style={ styles.input }>{ userInfo.username}</Text>
+          {/* <TextInput
             style={styles.input}
             value={userInfo.username}
             onChangeText={(text) => 
               setUserInfo({ ...userInfo, username: text })
             }
-          />
+          /> */}
         </View>
 
-        <View style={styles.formItem}>
+        {/* <View style={styles.formItem}>
           <Text style={ styles.label }>{ t('phone')}</Text>
           <TextInput
             style={styles.input}
@@ -103,57 +118,58 @@ export default function ProfileInfo() {
             }
             keyboardType="phone-pad"
           />
-        </View>
+        </View> */}
 
         <View style={styles.formItem}>
-          <Text style={ styles.label }>{ t('email')}</Text>
-          <TextInput
+          <Text style={ styles.label }>{ t( 'email' ) }</Text>
+          <Text style={ styles.input }>{ userInfo.email}</Text>
+          {/* <TextInput
             style={styles.input}
             value={userInfo.email}
             onChangeText={(text) => 
               setUserInfo({ ...userInfo, email: text })
             }
             keyboardType="email-address"
-          />
+          /> */}
         </View>
 
         <View style={styles.formItem}>
           <Text style={styles.label}>{t('six')}</Text>
-          <View style={styles.genderContainer}>
+          <View style={styles.sixContainer}>
             <TouchableOpacity
-              style={[styles.genderOption, userInfo.gender === t('man') && styles.genderOptionSelected]}
+              style={[styles.sixOption, userInfo.six === 'man' && styles.sixOptionSelected]}
               onPress={() => 
-                setUserInfo({ ...userInfo, gender: t('man') })
+                setUserInfo({ ...userInfo, six: 'man' })
               }
             >
-              <Text style={[styles.genderText, userInfo.gender === t('man') && styles.genderTextSelected]}>{t('man')}</Text>
+              <Text style={[styles.sixText, userInfo.six === 'man' && styles.sixTextSelected]}>{'man'}</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={[styles.genderOption, userInfo.gender === t('women') && styles.genderOptionSelected]}
+              style={[styles.sixOption, userInfo.six === 'women' && styles.sixOptionSelected]}
               onPress={() => 
-                setUserInfo({ ...userInfo, gender: t('women') })
+                setUserInfo({ ...userInfo, six: 'women' })
               }
             >
-              <Text style={[styles.genderText, userInfo.gender === t('women') && styles.genderTextSelected]}>{t('women')}</Text>
+              <Text style={[styles.sixText, userInfo.six === 'women' && styles.sixTextSelected]}>{'women'}</Text>
             </TouchableOpacity>
           </View>
         </View>
       </View>
 
-      <View style={styles.formItem}>
+      {/* <View style={styles.formItem}>
         <Text style={styles.label}>{t("birthday")}</Text>
         <Text style={styles.value} onPress={() => setShowBirthdayPicker(true)}>
           {birthDate.toLocaleDateString()}
         </Text>
-      </View>
+      </View> */}
 
       {/* 生日选择器（条件渲染） */}
-      {showBirthdayPicker && (
+      {/* {showBirthdayPicker && (
         <BirthdayPicker
           initialDate={birthDate}
           onDateChange={handleBirthdayChange}
         />
-      )}
+      )} */}
 
       <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
         <Text style={styles.saveButtonText}>{t('saveAndBack')}</Text>
@@ -182,19 +198,19 @@ const styles = StyleSheet.create({
     borderBottomColor: '#eee',
   },
   input: { flex: 1, fontSize: 16, marginLeft: 20 },
-  genderContainer: { flexDirection: 'row', marginLeft: 20 },
-  genderOption: {
+  sixContainer: { flexDirection: 'row', marginLeft: 20 },
+  sixOption: {
     padding: 10,
     marginRight: 20,
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
   },
-  genderOptionSelected: {
+  sixOptionSelected: {
     borderColor: '#007AFF',
     backgroundColor: '#E6F2FF',
   },
-  genderTextSelected: { color: '#007AFF' },
+  sixTextSelected: { color: '#007AFF' },
   saveButton: {
     backgroundColor: '#007AFF',
     borderRadius: 5,
