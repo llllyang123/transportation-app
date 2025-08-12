@@ -34,9 +34,9 @@ func (r *MySQLFreightRepository) Create(ctx context.Context, freight *models.Fre
 	query := `
 		INSERT INTO freight_orders (
 			origin_location, destination_location, origin_code, destination_code, 
-			type, typeid, remark, order_date, price, status, 
+			type, typeid, remark, order_date, price, 
 			is_urgent, has_insurance, email, user_id, created_at, updated_at
-		) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())
+		) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())
 	`
 
 	fmt.Println("sql:", query)
@@ -51,11 +51,11 @@ func (r *MySQLFreightRepository) Create(ctx context.Context, freight *models.Fre
 		freight.Remark,              // 对应 remark
 		freight.OrderDate,           // 对应 order_date
 		freight.Price,               // 对应 price
-		freight.Status,              // 对应 status
-		freight.IsUrgent,            // 对应 is_urgent
-		freight.HasInsurance,        // 对应 has_insurance
-		freight.Email,               // 对应 email
-		freight.UserID,              // 对应 user_id
+		//freight.Status,              // 对应 status
+		freight.IsUrgent,     // 对应 is_urgent
+		freight.HasInsurance, // 对应 has_insurance
+		freight.Email,        // 对应 email
+		freight.UserID,       // 对应 user_id
 	)
 	fmt.Println("result:", result)
 	fmt.Println("err:", err)
@@ -122,6 +122,7 @@ func (r *MySQLFreightRepository) List(ctx context.Context, filter models.Freight
            created_at, updated_at, email, user_id
     FROM freight_orders
     WHERE status = 1
+    ORDER BY updated_at desc 
 `
 
 	var args []interface{}
