@@ -84,6 +84,50 @@ func (h *UserHandler) Login(w http.ResponseWriter, r *http.Request) {
 			"email":    user.Email,
 			"avatar":   user.AvatarURL,
 			"role":     user.Role,
+			"six":      user.Six,
+			"token":    token,
+		},
+	})
+}
+
+// UpdateGender 更新用户性别（仅支持更新为man或women）
+func (h *UserHandler) UpdateGender(w http.ResponseWriter, r *http.Request) {
+	// 1. 解析请求体中的性别参数
+	var req struct {
+		UserId int64  `json:"user_id"`
+		Gender string `json:"gender"` // 只能是"man"或"women"
+	}
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		utils.ResponseError(w, http.StatusBadRequest, "请求格式错误")
+		return
+	}
+
+	// 2. 从中间件处理后的上下文获取用户ID
+	// （假设中间件已将用户ID存入r.Context()的"userID"键）
+	// 2. 参数校验
+	if req.UserId <= 0 {
+		utils.ResponseError(w, http.StatusBadRequest, "无效的用户ID")
+		return
+	}
+	if req.Gender != "man" && req.Gender != "women" {
+		utils.ResponseError(w, http.StatusBadRequest, "性别参数无效，必须是'man'或'women'")
+		return
+	}
+
+	// 3. 调用服务层更新性别
+	updatedUser, err := h.UserService.UpdateGender(req.UserId, req.Gender)
+	if err != nil {
+		utils.ResponseError(w, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	// 4. 返回成功响应（格式与Login/Register保持一致）
+	utils.ResponseJSON(w, http.StatusOK, map[string]interface{}{
+		"message": "性别更新成功",
+		"user": map[string]interface{}{
+			"id":       updatedUser.ID,
+			"username": updatedUser.Username,
+			"six":      updatedUser.Six, // 仅返回必要字段
 		},
 	})
 }

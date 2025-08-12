@@ -27,6 +27,7 @@ func SetupRoutes(
 	// 用户路由
 	r.HandleFunc("/api/users/register", userHandler.Register).Methods("POST")
 	r.HandleFunc("/api/users/login", userHandler.Login).Methods("POST")
+	r.HandleFunc("/api/users/gender", userHandler.UpdateGender).Methods("PATCH")
 
 	// 配置路由
 	configRouter := r.PathPrefix("/api/configs").Subrouter()
@@ -80,6 +81,22 @@ func SetupRoutes(
 			http.Error(w, "方法不允许", http.StatusMethodNotAllowed)
 		}
 	})).Methods("GET", "PUT", "DELETE")
+
+	// 新增：接单路由（需认证）
+	freightRouter.HandleFunc(
+		"/{id:[0-9]+}/accept",
+		authMiddleware.Handler(freightHandler.AcceptFreight),
+	).Methods("POST")
+	freightRouter.HandleFunc(
+		"/user/{user_id:[0-9]+}",
+		authMiddleware.Handler(freightHandler.ListFreightsByUser),
+	).Methods("GET")
+
+	// 完成订单路由（需认证）
+	freightRouter.HandleFunc(
+		"/{id:[0-9]+}/complete",
+		authMiddleware.Handler(freightHandler.CompleteOrder),
+	).Methods("POST")
 
 	return r // 返回gorilla/mux的路由器
 }

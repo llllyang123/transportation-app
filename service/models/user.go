@@ -11,7 +11,8 @@ type User struct {
 	Password  string               `json:"-"` // 不返回密码
 	Email     string               `json:"email"`
 	AvatarURL string               `json:"avatar_url"`
-	Role      string               `json:"role"`
+	Role      string               `json:"role" db:"role"`
+	Six       string               `json:"six" db:"six"`
 	Status    int                  `json:"status"`
 	CreatedAt utils.CustomNullTime `json:"created_at"`
 	UpdatedAt utils.CustomNullTime `json:"updated_at"`

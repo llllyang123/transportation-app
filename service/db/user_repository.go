@@ -38,7 +38,7 @@ func (r *UserRepositoryImpl) Create(user *models.User) error {
 
 	query := `
         INSERT INTO users (
-            username, password, email, avatar_url, role, status, created_at, updated_at
+            username, password, email, avatar_url, role, six, status, created_at, updated_at
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `
 
@@ -48,6 +48,7 @@ func (r *UserRepositoryImpl) Create(user *models.User) error {
 		user.Email,     // 修正顺序
 		user.AvatarURL, // 直接使用值，而非指针
 		user.Role,      // 直接使用值，而非指针
+		user.Six,
 		user.Status,
 		user.CreatedAt, // 自动生成的时间
 		user.UpdatedAt, // 自动生成的时间
@@ -58,12 +59,12 @@ func (r *UserRepositoryImpl) Create(user *models.User) error {
 
 // FindByUsername 通过用户名查找用户
 func (r *UserRepositoryImpl) FindByUsername(username string) (*models.User, error) {
-	query := `SELECT id, username, password, email, status, avatar_url, role, created_at, updated_at 
+	query := `SELECT id, username, password, email, status, avatar_url, role, six, created_at, updated_at 
               FROM users WHERE username = ?`
 
 	var user models.User
 	err := r.db.QueryRow(query, username).Scan(
-		&user.ID, &user.Username, &user.Password, &user.Email, &user.AvatarURL, &user.Role, &user.Status, &user.CreatedAt, &user.UpdatedAt)
+		&user.ID, &user.Username, &user.Password, &user.Email, &user.AvatarURL, &user.Role, &user.Six, &user.Status, &user.CreatedAt, &user.UpdatedAt)
 
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -77,12 +78,12 @@ func (r *UserRepositoryImpl) FindByUsername(username string) (*models.User, erro
 
 // FindByEmail 通过邮箱查找用户
 func (r *UserRepositoryImpl) FindByEmail(email string) (*models.User, error) {
-	query := `SELECT id, username, password, email, avatar_url, role, status, created_at, updated_at 
+	query := `SELECT id, username, password, email, avatar_url, role, six, status, created_at, updated_at 
               FROM users WHERE email = ?`
 
 	var user models.User
 	err := r.db.QueryRow(query, email).Scan(
-		&user.ID, &user.Username, &user.Password, &user.Email, &user.AvatarURL, &user.Role, &user.Status, &user.CreatedAt, &user.UpdatedAt)
+		&user.ID, &user.Username, &user.Password, &user.Email, &user.AvatarURL, &user.Role, &user.Six, &user.Status, &user.CreatedAt, &user.UpdatedAt)
 
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -96,12 +97,12 @@ func (r *UserRepositoryImpl) FindByEmail(email string) (*models.User, error) {
 
 // FindByID 通过ID查找用户
 func (r *UserRepositoryImpl) FindByID(id int64) (*models.User, error) {
-	query := `SELECT id, username, password, email, avatar_url, role, status, created_at, updated_at 
+	query := `SELECT id, username, password, email, avatar_url, role, six, status, created_at, updated_at 
               FROM users WHERE id = ?`
 
 	var user models.User
 	err := r.db.QueryRow(query, id).Scan(
-		&user.ID, &user.Username, &user.Password, &user.Email, &user.AvatarURL, &user.Role, &user.Status, &user.CreatedAt, &user.UpdatedAt)
+		&user.ID, &user.Username, &user.Password, &user.Email, &user.AvatarURL, &user.Role, &user.Six, &user.Status, &user.CreatedAt, &user.UpdatedAt)
 
 	if err != nil {
 		if err == sql.ErrNoRows {
