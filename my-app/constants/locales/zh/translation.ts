@@ -32,7 +32,10 @@ const zhTranslation: TranslationResource = {
     statusName: '状态',
     emergency: '紧急',
     Insurance: '保险',
-    unknown: '未知状态'
+    unknown: '未知状态',
+    UrgentCargo: '紧急货物',
+    Insured: '有保险',
+    PleaseEnterYourDestination: '请输入目的地'
   },
   hallDetail: {
     cargoDetails: '货物详情',

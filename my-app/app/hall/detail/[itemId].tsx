@@ -165,7 +165,7 @@ export default function HallDetail() {
         </View>
 
         <View style={styles.infoSection}>
-          <Text style={styles.label}>${t('publish.price')}</Text>
+          <Text style={styles.label}>{t('publish.price')}</Text>
           <Text style={styles.value}>{cargo.price}</Text>
         </View>
 

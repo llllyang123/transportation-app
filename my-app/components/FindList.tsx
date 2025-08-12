@@ -368,7 +368,7 @@ const TaobaoStyleFilter: React.FC<{
                     <View style={styles.filterInputContainer}>
                       <TextInput
                         style={styles.filterInput}
-                        placeholder="请输入目的地"
+                        placeholder={t("hallInfo.PleaseEnterYourDestination")}
                         value={destination}
                         onChangeText={setDestination}
                       />
@@ -417,7 +417,7 @@ const TaobaoStyleFilter: React.FC<{
                   
                   {/* 紧急货物 */}
                   <View style={styles.filterSwitch}>
-                    <Text style={styles.filterSwitchLabel}>紧急货物</Text>
+                    <Text style={styles.filterSwitchLabel}>{t("hallInfo.UrgentCargo")}</Text>
                     <Switch
                       value={isUrgent}
                       onValueChange={setIsUrgent}
@@ -427,7 +427,7 @@ const TaobaoStyleFilter: React.FC<{
                   
                   {/* 有保险 */}
                   <View style={styles.filterSwitch}>
-                    <Text style={styles.filterSwitchLabel}>有保险</Text>
+                    <Text style={ styles.filterSwitchLabel }>{t("hallInfo.Insured")}</Text>
                     <Switch
                       value={hasInsurance}
                       onValueChange={setHasInsurance}
